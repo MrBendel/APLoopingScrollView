@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController, InfiniteScrollViewDataSource, InfiniteScrollViewDelegate {
 
     var infiniteScrollView: InfiniteScrollView?
+    var cacheCount = 0
+    var cellColors = [UIColor.cyanColor().colorWithAlphaComponent(0.5), UIColor.yellowColor().colorWithAlphaComponent(0.5),UIColor.greenColor().colorWithAlphaComponent(0.5),UIColor.grayColor().colorWithAlphaComponent(0.5)]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,20 @@ class ViewController: UIViewController, InfiniteScrollViewDataSource, InfiniteSc
         iScrollView.pagingEnabled = true
         self.view.addSubview(iScrollView)
         self.infiniteScrollView = iScrollView
+        
+        let clearDataButton = UIButton(type: UIButtonType.RoundedRect)
+        clearDataButton.setTitle("Reload Data", forState: .Normal)
+        clearDataButton.sizeToFit()
+        clearDataButton.frame = CGRectInset(clearDataButton.frame, -24, -16)
+                clearDataButton.center = CGPoint(x: self.view.frameWidth * 0.5, y: CGRectGetMaxY(frame) + clearDataButton.frameHeight * 0.5 + 24)
+        clearDataButton.addTarget(self, action: "handleClearData:", forControlEvents: .TouchUpInside)
+        self.view.addSubview(clearDataButton)
+        
+    }
+    
+    func handleClearData(sender: UIButton) {
+        ++self.cacheCount
+        self.infiniteScrollView?.reloadData()
     }
     
     func infiniteScrollViewTotalItems(scrollView: InfiniteScrollView) -> Int {
@@ -39,6 +55,8 @@ class ViewController: UIViewController, InfiniteScrollViewDataSource, InfiniteSc
         let itemSize = scrollView.itemSize
         let cell = ExampleCell(frame: CGRect(origin: CGPointZero, size: itemSize))
         cell.text = "\(index)"
+        let colorIndex = self.cacheCount%self.cellColors.count
+        cell.backgroundColor = self.cellColors[colorIndex]
         return cell
     }
 }
@@ -48,8 +66,6 @@ class ExampleCell: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        self.backgroundColor = UIColor.cyanColor().colorWithAlphaComponent(0.5)
         
         let label = UILabel(frame: self.bounds)
         label.backgroundColor = UIColor.purpleColor().colorWithAlphaComponent(0.5)

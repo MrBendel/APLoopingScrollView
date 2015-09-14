@@ -335,6 +335,16 @@ class InfiniteScrollView: UIScrollView {
         }
     }
     
+    // MARK: Force-Reload of views
+    
+    func reloadData() {
+        for (_, view) in self.cachedViews {
+            view.removeFromSuperview()
+        }
+        self.visibleItems.removeAll(keepCapacity: true)
+        self.cachedViews.removeAll(keepCapacity: true)
+    }
+    
     // MARK: Programatic Animation
     
     func startTargetOffsetAnimation() {
