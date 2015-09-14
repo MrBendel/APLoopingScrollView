@@ -50,7 +50,7 @@ class InfiniteScrollView: UIScrollView {
                 super.delegate = supportedDelegate
             }
             else if newValue != nil {
-                println("Warning: wrong delegate type set. Should be of type InfiniteScrollViewDelegate")
+                print("Warning: wrong delegate type set. Should be of type InfiniteScrollViewDelegate")
             }
         }
         get { return super.delegate }
@@ -93,7 +93,7 @@ class InfiniteScrollView: UIScrollView {
     
     var blockContentOffsetChanges: Bool = false
     
-    override func touchesShouldCancelInContentView(view: UIView!) -> Bool {
+    override func touchesShouldCancelInContentView(view: UIView) -> Bool {
         return true
     }
     
@@ -113,7 +113,7 @@ class InfiniteScrollView: UIScrollView {
         self.panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
     }
     
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
@@ -161,7 +161,7 @@ class InfiniteScrollView: UIScrollView {
             
             let offset = currentOffset.x > centerX ? 1 : -1
             let newIndex = self.currentIndex + offset
-            self.currentIndex = safemod(newIndex, self.totalItems())
+            self.currentIndex = safemod(newIndex, b: self.totalItems())
             
             
             let minLeft = -self.contentInset.left
@@ -222,7 +222,7 @@ class InfiniteScrollView: UIScrollView {
             // go left
             let frame = self.frameForView(-index)
             if CGRectIntersectsRect(frame, visibleRect) {
-                let item = safemod(self.currentIndex - index, totalItems)
+                let item = safemod(self.currentIndex - index, b: totalItems)
                 let indexPath = IndexPath(item: item, offset: -index)
                 visibleItems.append(indexPath)
             }
@@ -230,14 +230,14 @@ class InfiniteScrollView: UIScrollView {
             if index > 0 {
                 let frame = self.frameForView(index)
                 if CGRectIntersectsRect(frame, visibleRect) {
-                    let item = safemod(self.currentIndex + index, totalItems)
+                    let item = safemod(self.currentIndex + index, b: totalItems)
                     let indexPath = IndexPath(item: item, offset: index)
                     visibleItems.append(indexPath)
                 }
             }
         }
         // sort the offsets so they're in order
-        visibleItems.sort { (a, b) -> Bool in
+        visibleItems.sortInPlace { (a, b) -> Bool in
             return a.offset < b.offset
         }
         return visibleItems
@@ -256,7 +256,7 @@ class InfiniteScrollView: UIScrollView {
             return true
         }
         else {
-            for (i, ai) in enumerate(a) {
+            for (i, ai) in a.enumerate() {
                 let bi = b[i]
                 if ai != bi {
                     return true
@@ -313,17 +313,19 @@ class InfiniteScrollView: UIScrollView {
                     self.stopTargetOffsetAnimation()
                 }
                 self.dragInitialIndex = self.currentIndex
-                
-                self.startPollingVelocity()
             }
             else if gestureRecognizer.state == .Ended || gestureRecognizer.state == .Cancelled {
-                self.endPollingVelocity()
                 var targetIndex = 0
                 
                 let totalItemWidth = self.itemSize.width + self.itemSpacing
-                if self.currentIndex == self.dragInitialIndex && fabs(self.scrollVelocity.x) > 10 {
-                    targetIndex = self.scrollVelocity.x < 0 ?  -1 : 1
+                let panVelocity = gestureRecognizer.velocityInView(self)
+                
+                if self.currentIndex == self.dragInitialIndex && fabs(panVelocity.x) > 10 {
+                    targetIndex = panVelocity.x < 0 ?  1 : -1
                 }
+                
+                
+                print("targetIndex: \(targetIndex), vel=\(panVelocity.x)")
                 
                 var xOffset = 0.5 * (-self.boundsWidth + totalItemWidth + self.itemSize.width)
                 xOffset += self.boundsWidth * CGFloat(targetIndex)
@@ -336,31 +338,7 @@ class InfiniteScrollView: UIScrollView {
         }
     }
     
-    // MARK: Animated display link
-    
-    func startPollingVelocity() {
-        self.displayLink = CADisplayLink(target: self, selector: "pollVelocity:")
-        self.displayLink?.frameInterval = 2
-        self.displayLink?.addToRunLoop(NSRunLoop.mainRunLoop(), forMode: NSRunLoopCommonModes)
-    }
-    
-    func endPollingVelocity() {
-        self.displayLink?.invalidate()
-        self.displayLink = nil
-    }
-    
-    private var lastOffsetCapture: CFTimeInterval = CACurrentMediaTime()
-    private var lastOffset = CGPointZero
-    private var scrollVelocity = CGPointZero
-    func pollVelocity(sender: CADisplayLink) {
-        let currentOffset = self.contentOffset
-        let now = CACurrentMediaTime()
-        let deltaTime = now - self.lastOffsetCapture
-        let deltaDist = currentOffset.x - self.lastOffset.x
-        self.scrollVelocity.x = deltaDist / CGFloat(deltaTime)
-        self.lastOffset.x = currentOffset.x
-        self.lastOffsetCapture = now
-    }
+    // MARK: Programatic Animation
     
     func startTargetOffsetAnimation() {
         self.animating = true

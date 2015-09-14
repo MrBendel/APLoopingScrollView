@@ -16,31 +16,31 @@ func safemod(a: Int, b: Int) -> Int {
 extension UIView {
     var frameWidth: CGFloat {
         get { return self.frame.width }
-        set { self.frame = CGRectSetWidth(self.frame, newValue) }
+        set { self.frame = CGRectSetWidth(self.frame, width: newValue) }
     }
     
     var frameHeight: CGFloat {
         get { return self.frame.height }
-        set { self.frame = CGRectSetHeight(self.frame, newValue) }
+        set { self.frame = CGRectSetHeight(self.frame, height: newValue) }
     }
     
     var frameSize: CGSize {
         get { return self.frame.size }
-        set { self.frame = CGRectSetSize(self.frame, newValue) }
+        set { self.frame = CGRectSetSize(self.frame, size: newValue) }
     }
     var boundsWidth: CGFloat {
         get { return self.bounds.width }
-        set { self.bounds = CGRectSetWidth(self.bounds, newValue) }
+        set { self.bounds = CGRectSetWidth(self.bounds, width: newValue) }
     }
     
     var boundsHeight: CGFloat {
         get { return self.bounds.height }
-        set { self.bounds = CGRectSetHeight(self.bounds, newValue) }
+        set { self.bounds = CGRectSetHeight(self.bounds, height: newValue) }
     }
     
     var boundsSize: CGSize {
         get { return self.bounds.size }
-        set { self.bounds = CGRectSetSize(self.bounds, newValue) }
+        set { self.bounds = CGRectSetSize(self.bounds, size: newValue) }
     }
 }
 
@@ -62,12 +62,12 @@ internal extension Array {
     /**
     Index of the first occurrence of item, if found.
 
-    :param: item The item to search for
-    :returns: Index of the matched item or nil
+    - parameter item: The item to search for
+    - returns: Index of the matched item or nil
     */
     func indexOf <U: Equatable> (item: U) -> Int? {
         if item is Element {
-            return Swift.find(unsafeBitCast(self, [U].self), item)
+            return unsafeBitCast(self, [U].self).indexOf(item)
         }
         
         return nil
@@ -78,8 +78,8 @@ internal extension Dictionary {
     /**
     Checks if a key exists in the dictionary.
     
-    :param: key Key to check
-    :returns: true if the key exists
+    - parameter key: Key to check
+    - returns: true if the key exists
     */
     func has (key: Key) -> Bool {
         return indexForKey(key) != nil
