@@ -1,6 +1,6 @@
 //
-//  InfinityScrollView.swift
-//  InfinityScrollView
+//  InfiniteScrollView.swift
+//  InfiniteScrollView
 //
 //  Created by Andrew Poes on 8/25/15.
 //  Copyright (c) 2015 Andrew Poes. All rights reserved.
@@ -8,16 +8,22 @@
 
 import UIKit
 
-func ==(lhs: InfinityScrollView.IndexPath, rhs: InfinityScrollView.IndexPath) -> Bool {
+func ==(lhs: InfiniteScrollView.IndexPath, rhs: InfiniteScrollView.IndexPath) -> Bool {
     return lhs.item == rhs.item && lhs.offset == rhs.offset
 }
 
-protocol InfinityScrollViewDataSource {
-    func infinityScrollViewTotalItems(scrollView: InfinityScrollView) -> Int
-    func infinityScrollView(scrollView: InfinityScrollView, viewForIndex index: Int) -> UIView
+@objc protocol InfiniteScrollViewDataSource: class {
+    func infiniteScrollViewTotalItems(scrollView: InfiniteScrollView) -> Int
+    func infiniteScrollView(scrollView: InfiniteScrollView, viewForIndex index: Int) -> UIView
 }
 
-class InfinityScrollView: UIScrollView {
+@objc protocol InfiniteScrollViewDelegate: UIScrollViewDelegate {
+    optional func infiniteScrollView(scrollView: InfiniteScrollView, willDisplayView view: UIView)
+    optional func infiniteScrollView(scrollView: InfiniteScrollView, didEndDisplayingView view: UIView)
+    optional func infiniteScrollView(scrollView: InfiniteScrollView, didScrollToIndex index: Int)
+}
+
+class InfiniteScrollView: UIScrollView {
     struct IndexPath: Hashable {
         var item: Int
         var offset: Int
@@ -33,7 +39,23 @@ class InfinityScrollView: UIScrollView {
         }
     }
     
-    var dataSource: InfinityScrollViewDataSource?
+    weak var dataSource: InfiniteScrollViewDataSource?
+    weak var privateDelegate: InfiniteScrollViewDelegate? {
+        get { return self.delegate as? InfiniteScrollViewDelegate }
+        set { self.delegate = newValue }
+    }
+    override var delegate: UIScrollViewDelegate? {
+        set {
+            if let supportedDelegate = newValue as? InfiniteScrollViewDelegate {
+                super.delegate = supportedDelegate
+            }
+            else if newValue != nil {
+                println("Warning: wrong delegate type set. Should be of type InfiniteScrollViewDelegate")
+            }
+        }
+        get { return super.delegate }
+    }
+    
     var itemSize: CGSize {
         didSet {
             self.setNeedsUpdateLayoutInfo()
@@ -59,6 +81,21 @@ class InfinityScrollView: UIScrollView {
     var targetXOffset: CGFloat = 0
     var animXOffset: CGFloat = 0
     var animating: Bool = false
+    private var _pagingEnabled: Bool = false
+    override var pagingEnabled: Bool {
+        get {
+            return _pagingEnabled
+        }
+        set {
+            _pagingEnabled = newValue
+        }
+    }
+    
+    var blockContentOffsetChanges: Bool = false
+    
+    override func touchesShouldCancelInContentView(view: UIView!) -> Bool {
+        return true
+    }
     
     override init(frame: CGRect) {
         self.itemSize = frame.size
@@ -68,7 +105,6 @@ class InfinityScrollView: UIScrollView {
         self.indicatorStyle = .White
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator = false
-        self.backgroundColor = UIColor(white: 0, alpha: 0.15)
         
         // set the scroll speed to be tighter
         self.decelerationRate = UIScrollViewDecelerationRateFast
@@ -79,6 +115,15 @@ class InfinityScrollView: UIScrollView {
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override var contentOffset: CGPoint {
+        set {
+            if self.blockContentOffsetChanges == false { super.contentOffset = newValue }
+        }
+        get {
+            return super.contentOffset
+        }
     }
     
     func calculatedCenterX() -> CGFloat {
@@ -112,18 +157,21 @@ class InfinityScrollView: UIScrollView {
         let totalItemWidth = itemSize.width + itemSpacing
         
         if distanceFromCenter > totalItemWidth * 0.5 {
-            let offset = currentOffset.x < 0 ? -1 : 1
+            let centerX = self.calculatedCenterX()
+            
+            let offset = currentOffset.x > centerX ? 1 : -1
             let newIndex = self.currentIndex + offset
             self.currentIndex = safemod(newIndex, self.totalItems())
             
-            let minRight = -self.contentInset.left
+            
+            let minLeft = -self.contentInset.left
             let maxRight = (self.contentSize.width - self.contentInset.right) - totalItemWidth
-            let xOffset = currentOffset.x > 0 ? minRight : maxRight
+            let xOffset = offset > 0 ? minLeft : maxRight
             self.contentOffset = CGPointMake(xOffset, currentOffset.y)
             
             // update anim values
             if self.animating {
-                self.targetXOffset = self.calculatedCenterX()
+                self.targetXOffset = centerX
                 self.animXOffset = self.contentOffset.x
             }
         }
@@ -141,6 +189,7 @@ class InfinityScrollView: UIScrollView {
             // add any indexes not previously in visibleIndexes
             if newItems.indexOf(indexPath) != nil {
                 if let view = self.view(forIndexPath: indexPath) {
+                    self.privateDelegate?.infiniteScrollView?(self, willDisplayView: view)
                     self.insertSubview(view, atIndex: 0)
                 }
             }
@@ -155,6 +204,7 @@ class InfinityScrollView: UIScrollView {
         for indexPath in removedItems {
             if let view = self.view(forIndexPath: indexPath) {
                 view.removeFromSuperview()
+                self.privateDelegate?.infiniteScrollView?(self, didEndDisplayingView: view)
             }
         }
     }
@@ -197,7 +247,7 @@ class InfinityScrollView: UIScrollView {
         let totalItemWidth = itemSize.width + itemSpacing
         let xCenter = (self.contentSize.width - totalItemWidth) * 0.5
         let xOffset = xCenter + CGFloat(distToCenterIndex) * totalItemWidth
-        let frame = CGRect(x: xOffset, y: (self.boundsHeight - self.itemSize.height) * 0.5, width: totalItemWidth, height: self.itemSize.height)
+        let frame = CGRect(x: xOffset, y: (self.frameHeight - self.itemSize.height) * 0.5, width: self.itemSize.width, height: self.itemSize.height)
         return frame
     }
     
@@ -218,6 +268,9 @@ class InfinityScrollView: UIScrollView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
+        // debug logs
+        //        println("x: \(self.contentOffset.x), left: \(self.contentInset.left), right: \(self.contentInset.right)")
         // updates the layout info if neccesary, that is
         // contentSize and edge insets to match view width
         self.updateViewLayoutInfo()
@@ -230,7 +283,7 @@ class InfinityScrollView: UIScrollView {
     // MARK: Datasource protocol
     
     func totalItems() -> Int {
-        if let totalItems = self.dataSource?.infinityScrollViewTotalItems(self) {
+        if let totalItems = self.dataSource?.infiniteScrollViewTotalItems(self) {
             return totalItems
         }
         return 0
@@ -242,7 +295,7 @@ class InfinityScrollView: UIScrollView {
             return self.cachedViews[key]
         }
         else {
-            if let view = self.dataSource?.infinityScrollView(self, viewForIndex: indexPath.item) {
+            if let view = self.dataSource?.infiniteScrollView(self, viewForIndex: indexPath.item) {
                 self.cachedViews.updateValue(view, forKey: key)
                 return view
             }
@@ -254,30 +307,32 @@ class InfinityScrollView: UIScrollView {
     // MARK: UIPanGestureRecognizer
     
     func handlePanGesture(gestureRecognizer: UIPanGestureRecognizer) {
-        if gestureRecognizer.state == .Began {
-            if self.animating {
-                self.stopTargetOffsetAnimation()
+        if self.pagingEnabled {
+            if gestureRecognizer.state == .Began {
+                if self.animating {
+                    self.stopTargetOffsetAnimation()
+                }
+                self.dragInitialIndex = self.currentIndex
+                
+                self.startPollingVelocity()
             }
-            self.dragInitialIndex = self.currentIndex
-            
-            self.startPollingVelocity()
-        }
-        else if gestureRecognizer.state == .Ended || gestureRecognizer.state == .Cancelled {
-            self.endPollingVelocity()
-            var targetIndex = 0
-            
-            let totalItemWidth = self.itemSize.width + self.itemSpacing
-            if self.currentIndex == self.dragInitialIndex && fabs(self.scrollVelocity.x) > 10 {
-                targetIndex = self.scrollVelocity.x < 0 ?  -1 : 1
+            else if gestureRecognizer.state == .Ended || gestureRecognizer.state == .Cancelled {
+                self.endPollingVelocity()
+                var targetIndex = 0
+                
+                let totalItemWidth = self.itemSize.width + self.itemSpacing
+                if self.currentIndex == self.dragInitialIndex && fabs(self.scrollVelocity.x) > 10 {
+                    targetIndex = self.scrollVelocity.x < 0 ?  -1 : 1
+                }
+                
+                var xOffset = 0.5 * (-self.boundsWidth + totalItemWidth + self.itemSize.width)
+                xOffset += self.boundsWidth * CGFloat(targetIndex)
+                self.targetXOffset = xOffset
+                self.animXOffset = self.contentOffset.x
+                
+                // start the animation
+                self.startTargetOffsetAnimation()
             }
-            
-            var xOffset = 0.5 * (-self.boundsWidth + totalItemWidth + self.itemSize.width)
-            xOffset += self.boundsWidth * CGFloat(targetIndex)
-            self.targetXOffset = xOffset
-            self.animXOffset = self.contentOffset.x
-            
-            // start the animation
-            self.startTargetOffsetAnimation()
         }
     }
     
@@ -325,6 +380,8 @@ class InfinityScrollView: UIScrollView {
         else {
             self.setContentOffset(CGPoint(x: self.targetXOffset, y: self.contentOffset.y), animated: false)
             self.stopTargetOffsetAnimation()
+            // inform the delegate
+            self.privateDelegate?.infiniteScrollView?(self, didScrollToIndex: self.currentIndex)
         }
     }
     
@@ -336,7 +393,5 @@ class InfinityScrollView: UIScrollView {
         
         self.targetXOffset = 0
         self.animXOffset = 0
-        
-        println("Stop animation")
     }
 }

@@ -9,12 +9,12 @@
 /* Begin PBXBuildFile section */
 		A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */; };
 		A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F61B8C2D810075BCF8 /* ViewController.swift */; };
-		A75A58FA1B8C2D810075BCF8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A75A58F81B8C2D810075BCF8 /* Main.storyboard */; };
-		A75A58FC1B8C2D810075BCF8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A75A58FB1B8C2D810075BCF8 /* Images.xcassets */; };
-		A75A58FF1B8C2D810075BCF8 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A75A58FD1B8C2D810075BCF8 /* LaunchScreen.xib */; };
 		A75A590B1B8C2D820075BCF8 /* InfinityScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */; };
-		A75A59171B8C2ECC0075BCF8 /* InfinityScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59161B8C2ECC0075BCF8 /* InfinityScrollView.swift */; };
+		A75A59171B8C2ECC0075BCF8 /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59161B8C2ECC0075BCF8 /* InfiniteScrollView.swift */; };
 		A75A59191B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */; };
+		A7A346A61BA707D300064306 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A346A51BA707D300064306 /* Images.xcassets */; };
+		A7A346D81BA7093900064306 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A346D71BA7093900064306 /* Storyboard.storyboard */; };
+		A7A346DA1BA7094500064306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7A346D91BA7094500064306 /* LaunchScreen.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,18 +28,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A75A58EF1B8C2D810075BCF8 /* InfinityScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfinityScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75A58F31B8C2D810075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A75A58F61B8C2D810075BCF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A75A58F91B8C2D810075BCF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		A75A58FB1B8C2D810075BCF8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		A75A58FE1B8C2D810075BCF8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		A75A59041B8C2D820075BCF8 /* InfinityScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfinityScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = InfiniteScrollView/Examples/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		A75A58F61B8C2D810075BCF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = InfiniteScrollView/Examples/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		A75A59041B8C2D820075BCF8 /* InfiniteScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfiniteScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75A59091B8C2D820075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityScrollViewTests.swift; sourceTree = "<group>"; };
-		A75A59161B8C2ECC0075BCF8 /* InfinityScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinityScrollView.swift; sourceTree = "<group>"; };
-		A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfinityScrollViewHelpers.swift; sourceTree = "<group>"; };
+		A75A59161B8C2ECC0075BCF8 /* InfiniteScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfiniteScrollView.swift; path = InfiniteScrollView/Source/InfiniteScrollView.swift; sourceTree = SOURCE_ROOT; };
+		A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfinityScrollViewHelpers.swift; path = InfiniteScrollView/Source/InfinityScrollViewHelpers.swift; sourceTree = SOURCE_ROOT; };
+		A7A346A51BA707D300064306 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
+		A7A346D71BA7093900064306 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
+		A7A346D91BA7094500064306 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +63,8 @@
 		A75A58E61B8C2D810075BCF8 = {
 			isa = PBXGroup;
 			children = (
-				A75A58F11B8C2D810075BCF8 /* InfinityScrollView */,
-				A75A59071B8C2D820075BCF8 /* InfinityScrollViewTests */,
+				A75A58F11B8C2D810075BCF8 /* InfiniteScrollView */,
+				A75A59071B8C2D820075BCF8 /* InfiniteScrollViewTests */,
 				A75A58F01B8C2D810075BCF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -72,24 +72,21 @@
 		A75A58F01B8C2D810075BCF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A75A58EF1B8C2D810075BCF8 /* InfinityScrollView.app */,
-				A75A59041B8C2D820075BCF8 /* InfinityScrollViewTests.xctest */,
+				A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */,
+				A75A59041B8C2D820075BCF8 /* InfiniteScrollViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A75A58F11B8C2D810075BCF8 /* InfinityScrollView */ = {
+		A75A58F11B8C2D810075BCF8 /* InfiniteScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				A75A59141B8C2EB50075BCF8 /* InfinityScrollView Classes */,
 				A75A59151B8C2EBE0075BCF8 /* Example */,
-				A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */,
-				A75A58F61B8C2D810075BCF8 /* ViewController.swift */,
-				A75A58F81B8C2D810075BCF8 /* Main.storyboard */,
-				A75A58FB1B8C2D810075BCF8 /* Images.xcassets */,
-				A75A58FD1B8C2D810075BCF8 /* LaunchScreen.xib */,
+				A75A59141B8C2EB50075BCF8 /* InfiniteScrollView Source */,
+				A7DFC2E11BA7029500CB87A9 /* Resources */,
 				A75A58F21B8C2D810075BCF8 /* Supporting Files */,
 			);
+			name = InfiniteScrollView;
 			path = InfinityScrollView;
 			sourceTree = "<group>";
 		};
@@ -101,12 +98,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A75A59071B8C2D820075BCF8 /* InfinityScrollViewTests */ = {
+		A75A59071B8C2D820075BCF8 /* InfiniteScrollViewTests */ = {
 			isa = PBXGroup;
 			children = (
 				A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */,
 				A75A59081B8C2D820075BCF8 /* Supporting Files */,
 			);
+			name = InfiniteScrollViewTests;
 			path = InfinityScrollViewTests;
 			sourceTree = "<group>";
 		};
@@ -118,28 +116,40 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A75A59141B8C2EB50075BCF8 /* InfinityScrollView Classes */ = {
+		A75A59141B8C2EB50075BCF8 /* InfiniteScrollView Source */ = {
 			isa = PBXGroup;
 			children = (
-				A75A59161B8C2ECC0075BCF8 /* InfinityScrollView.swift */,
+				A75A59161B8C2ECC0075BCF8 /* InfiniteScrollView.swift */,
 				A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */,
 			);
-			name = "InfinityScrollView Classes";
+			name = "InfiniteScrollView Source";
 			sourceTree = "<group>";
 		};
 		A75A59151B8C2EBE0075BCF8 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */,
+				A75A58F61B8C2D810075BCF8 /* ViewController.swift */,
 			);
 			name = Example;
+			sourceTree = "<group>";
+		};
+		A7DFC2E11BA7029500CB87A9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				A7A346A51BA707D300064306 /* Images.xcassets */,
+				A7A346D71BA7093900064306 /* Storyboard.storyboard */,
+				A7A346D91BA7094500064306 /* LaunchScreen.xib */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A75A58EE1B8C2D810075BCF8 /* InfinityScrollView */ = {
+		A75A58EE1B8C2D810075BCF8 /* InfiniteScrollView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfinityScrollView" */;
+			buildConfigurationList = A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollView" */;
 			buildPhases = (
 				A75A58EB1B8C2D810075BCF8 /* Sources */,
 				A75A58EC1B8C2D810075BCF8 /* Frameworks */,
@@ -149,14 +159,14 @@
 			);
 			dependencies = (
 			);
-			name = InfinityScrollView;
+			name = InfiniteScrollView;
 			productName = InfinityScrollView;
-			productReference = A75A58EF1B8C2D810075BCF8 /* InfinityScrollView.app */;
+			productReference = A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A75A59031B8C2D820075BCF8 /* InfinityScrollViewTests */ = {
+		A75A59031B8C2D820075BCF8 /* InfiniteScrollViewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfinityScrollViewTests" */;
+			buildConfigurationList = A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollViewTests" */;
 			buildPhases = (
 				A75A59001B8C2D820075BCF8 /* Sources */,
 				A75A59011B8C2D820075BCF8 /* Frameworks */,
@@ -167,9 +177,9 @@
 			dependencies = (
 				A75A59061B8C2D820075BCF8 /* PBXTargetDependency */,
 			);
-			name = InfinityScrollViewTests;
+			name = InfiniteScrollViewTests;
 			productName = InfinityScrollViewTests;
-			productReference = A75A59041B8C2D820075BCF8 /* InfinityScrollViewTests.xctest */;
+			productReference = A75A59041B8C2D820075BCF8 /* InfiniteScrollViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -190,7 +200,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "InfinityScrollView" */;
+			buildConfigurationList = A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "InfiniteScrollView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -203,8 +213,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A75A58EE1B8C2D810075BCF8 /* InfinityScrollView */,
-				A75A59031B8C2D820075BCF8 /* InfinityScrollViewTests */,
+				A75A58EE1B8C2D810075BCF8 /* InfiniteScrollView */,
+				A75A59031B8C2D820075BCF8 /* InfiniteScrollViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -214,9 +224,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A75A58FA1B8C2D810075BCF8 /* Main.storyboard in Resources */,
-				A75A58FF1B8C2D810075BCF8 /* LaunchScreen.xib in Resources */,
-				A75A58FC1B8C2D810075BCF8 /* Images.xcassets in Resources */,
+				A7A346A61BA707D300064306 /* Images.xcassets in Resources */,
+				A7A346DA1BA7094500064306 /* LaunchScreen.xib in Resources */,
+				A7A346D81BA7093900064306 /* Storyboard.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,7 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A75A59171B8C2ECC0075BCF8 /* InfinityScrollView.swift in Sources */,
+				A75A59171B8C2ECC0075BCF8 /* InfiniteScrollView.swift in Sources */,
 				A75A59191B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift in Sources */,
 				A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */,
 				A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */,
@@ -254,29 +264,10 @@
 /* Begin PBXTargetDependency section */
 		A75A59061B8C2D820075BCF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A75A58EE1B8C2D810075BCF8 /* InfinityScrollView */;
+			target = A75A58EE1B8C2D810075BCF8 /* InfiniteScrollView */;
 			targetProxy = A75A59051B8C2D820075BCF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		A75A58F81B8C2D810075BCF8 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A75A58F91B8C2D810075BCF8 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A75A58FD1B8C2D810075BCF8 /* LaunchScreen.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A75A58FE1B8C2D810075BCF8 /* Base */,
-			);
-			name = LaunchScreen.xib;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A75A590C1B8C2D820075BCF8 /* Debug */ = {
@@ -366,7 +357,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = InfinityScrollView/Info.plist;
+				INFOPLIST_FILE = InfiniteScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -376,7 +367,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = InfinityScrollView/Info.plist;
+				INFOPLIST_FILE = InfiniteScrollView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -394,7 +385,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = InfinityScrollViewTests/Info.plist;
+				INFOPLIST_FILE = InfiniteScrollViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InfinityScrollView.app/InfinityScrollView";
@@ -409,7 +400,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = InfinityScrollViewTests/Info.plist;
+				INFOPLIST_FILE = InfiniteScrollViewTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InfinityScrollView.app/InfinityScrollView";
@@ -419,7 +410,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "InfinityScrollView" */ = {
+		A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "InfiniteScrollView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A75A590C1B8C2D820075BCF8 /* Debug */,
@@ -428,21 +419,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfinityScrollView" */ = {
+		A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A75A590F1B8C2D820075BCF8 /* Debug */,
 				A75A59101B8C2D820075BCF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfinityScrollViewTests" */ = {
+		A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollViewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A75A59121B8C2D820075BCF8 /* Debug */,
 				A75A59131B8C2D820075BCF8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  InfinityScrollView
+//  InfiniteScrollView
 //
 //  Created by Andrew Poes on 8/25/15.
 //  Copyright (c) 2015 Andrew Poes. All rights reserved.
