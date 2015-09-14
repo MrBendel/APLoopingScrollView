@@ -324,9 +324,6 @@ class InfiniteScrollView: UIScrollView {
                     targetIndex = panVelocity.x < 0 ?  1 : -1
                 }
                 
-                
-                print("targetIndex: \(targetIndex), vel=\(panVelocity.x)")
-                
                 var xOffset = 0.5 * (-self.boundsWidth + totalItemWidth + self.itemSize.width)
                 xOffset += self.boundsWidth * CGFloat(targetIndex)
                 self.targetXOffset = xOffset

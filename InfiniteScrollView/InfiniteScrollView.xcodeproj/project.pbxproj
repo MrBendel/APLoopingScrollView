@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A75971EF1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75971EE1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift */; };
 		A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */; };
 		A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F61B8C2D810075BCF8 /* ViewController.swift */; };
 		A75A590B1B8C2D820075BCF8 /* InfinityScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A75971EE1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfiniteScrollViewWithScaling.swift; path = InfiniteScrollView/Examples/InfiniteScrollViewWithScaling.swift; sourceTree = SOURCE_ROOT; };
 		A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A75A58F31B8C2D810075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = InfiniteScrollView/Examples/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
@@ -60,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A75971ED1BA728500042D3C4 /* Scale Scroll */ = {
+			isa = PBXGroup;
+			children = (
+				A75971EE1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift */,
+			);
+			name = "Scale Scroll";
+			sourceTree = "<group>";
+		};
 		A75A58E61B8C2D810075BCF8 = {
 			isa = PBXGroup;
 			children = (
@@ -128,6 +138,7 @@
 		A75A59151B8C2EBE0075BCF8 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				A75971ED1BA728500042D3C4 /* Scale Scroll */,
 				A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */,
 				A75A58F61B8C2D810075BCF8 /* ViewController.swift */,
 			);
@@ -247,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A75A59171B8C2ECC0075BCF8 /* InfiniteScrollView.swift in Sources */,
+				A75971EF1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift in Sources */,
 				A75A59191B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift in Sources */,
 				A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */,
 				A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */,

@@ -19,12 +19,13 @@ class ViewController: UIViewController, InfiniteScrollViewDataSource, InfiniteSc
         
         let frameSize = self.view.frameSize
         let frame = CGRectMake(0, frameSize.height * 0.25, frameSize.width, frameSize.height * 0.5)
-        let iScrollView = InfiniteScrollView(frame: frame)
+        let iScrollView = InfiniteScrollViewWithScaling(frame: frame)
         iScrollView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(0.3)
         iScrollView.delegate = self
         iScrollView.dataSource = self
         iScrollView.itemSize = CGSize(width: CGRectGetHeight(frame) * 0.5, height: CGRectGetHeight(frame) * 0.5)
-        iScrollView.itemSpacing = 12
+        iScrollView.itemSpacing = 6
+        iScrollView.edgeScale = 0.9
         iScrollView.pagingEnabled = true
         self.view.addSubview(iScrollView)
         self.infiniteScrollView = iScrollView
