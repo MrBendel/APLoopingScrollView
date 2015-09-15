@@ -13,14 +13,14 @@ func ==(lhs: APLoopingScrollView.IndexPath, rhs: APLoopingScrollView.IndexPath) 
 }
 
 @objc protocol APLoopingScrollViewDataSource: class {
-    func infiniteScrollViewTotalItems(scrollView: APLoopingScrollView) -> Int
-    func infiniteScrollView(scrollView: APLoopingScrollView, viewForIndex index: Int) -> UIView
+    func loopingScrollViewTotalItems(scrollView: APLoopingScrollView) -> Int
+    func loopingScrollView(scrollView: APLoopingScrollView, viewForIndex index: Int) -> UIView
 }
 
 @objc protocol APLoopingScrollViewDelegate: UIScrollViewDelegate {
-    optional func infiniteScrollView(scrollView: APLoopingScrollView, willDisplayView view: UIView)
-    optional func infiniteScrollView(scrollView: APLoopingScrollView, didEndDisplayingView view: UIView)
-    optional func infiniteScrollView(scrollView: APLoopingScrollView, didScrollToIndex index: Int)
+    optional func loopingScrollView(scrollView: APLoopingScrollView, willDisplayView view: UIView)
+    optional func loopingScrollView(scrollView: APLoopingScrollView, didEndDisplayingView view: UIView)
+    optional func loopingScrollView(scrollView: APLoopingScrollView, didScrollToIndex index: Int)
 }
 
 class APLoopingScrollView: UIScrollView {
@@ -84,10 +84,21 @@ class APLoopingScrollView: UIScrollView {
     
     var dragInitialIndex: Int = 0
     var displayLink: CADisplayLink?
-    var targetXOffset: CGFloat = 0
-    var animXOffset: CGFloat = 0
+    var targetOffset: CGFloat = 0
+    var animOffset: CGFloat = 0
     var animating: Bool = false
-    private var _pagingEnabled: Bool = false
+    private var _pagingEnabled: Bool = false {
+        didSet {
+            if _pagingEnabled {
+                // set the scroll speed to be tighter
+                self.decelerationRate = UIScrollViewDecelerationRateFast
+            }
+            else {
+                // set the scroll speed to be looser
+                self.decelerationRate = UIScrollViewDecelerationRateNormal
+            }
+        }
+    }
     override var pagingEnabled: Bool {
         get {
             return _pagingEnabled
@@ -121,12 +132,10 @@ class APLoopingScrollView: UIScrollView {
     func sharedInit() {
         self.itemSize = self.frame.size
         self.clipsToBounds = true
-        self.indicatorStyle = .White
-        self.showsHorizontalScrollIndicator = false
-        self.showsVerticalScrollIndicator = false
-        
-        // set the scroll speed to be tighter
-        self.decelerationRate = UIScrollViewDecelerationRateFast
+//        self.showsHorizontalScrollIndicator = false
+//        self.showsVerticalScrollIndicator = false
+//        self.alwaysBounceHorizontal = true
+//        self.alwaysBounceVertical = true
         
 //         listen to pan gesture
         self.panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
@@ -141,53 +150,110 @@ class APLoopingScrollView: UIScrollView {
         }
     }
     
-    func calculatedCenterX() -> CGFloat {
-        //        alternative
-        //        0.5 * (-self.boundsWidth + totalItemWidth + self.itemSize.width)
-        return 0.5 * (self.contentSize.width - self.boundsWidth - self.itemSpacing)
+    func calculatedCenter() -> CGFloat {
+        var center: CGFloat = 0
+        if self.scrollDirection == .Vertical {
+            center = 0.5 * (self.contentSize.height - self.boundsHeight - self.itemSpacing)
+        }
+        else /*if self.scrollDirection == .Horizontal*/ {
+            center = 0.5 * (self.contentSize.width - self.boundsWidth - self.itemSpacing)
+        }
+        return center
     }
     
     func updateViewLayoutInfo() {
         if self.needsUpdateLayoutInfo {
             self.needsUpdateLayoutInfo = false
             
-            let totalItemWidth = itemSize.width + itemSpacing
-            let contentSize = CGSize(width: totalItemWidth * 2, height: self.itemSize.height)
-            let edgeInset = (self.boundsWidth - totalItemWidth) * 0.5
-            let contentInset = UIEdgeInsets(top: 0, left: edgeInset, bottom: 0, right: edgeInset)
+            let totalItemSpace: CGFloat
+            let contentSize: CGSize
+            let edgeInset: CGFloat
+            let contentInset: UIEdgeInsets
+            
+            if self.scrollDirection == .Vertical {
+                totalItemSpace = itemSize.height + itemSpacing
+                contentSize = CGSize(width: self.itemSize.width, height: totalItemSpace * 2)
+                edgeInset = (self.boundsHeight - totalItemSpace) * 0.5
+                contentInset = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: 0)
+            }
+            else /*if self.scrollDirection == .Horizontal*/ {
+                totalItemSpace = itemSize.width + itemSpacing
+                contentSize = CGSize(width: totalItemSpace * 2, height: self.itemSize.height)
+                edgeInset = (self.boundsWidth - totalItemSpace) * 0.5
+                contentInset = UIEdgeInsets(top: 0, left: edgeInset, bottom: 0, right: edgeInset)
+            }
             
             self.contentSize = contentSize
             self.contentInset = contentInset
             
-            let centerXOffset = self.calculatedCenterX()
-            self.contentOffset = CGPoint(x: centerXOffset, y: 0)
+            let centerOffset = self.calculatedCenter()
+            let contentOffset: CGPoint
+            if self.scrollDirection == .Vertical {
+                contentOffset = CGPoint(x: 0, y: centerOffset)
+            }
+            else /*if self.scrollDirection == .Horizontal*/ {
+                contentOffset = CGPoint(x: centerOffset, y: 0)
+            }
+            self.contentOffset = contentOffset
         }
     }
     
-    func recenterIfNeccesary() {
-        let currentOffset = self.contentOffset
-        let contentWidth = self.contentSize.width
-        let centerXOffset = (contentWidth - self.boundsWidth) * 0.5
-        let distanceFromCenter = fabs(currentOffset.x - centerXOffset)
-        let totalItemWidth = itemSize.width + itemSpacing
+    func recenterIfNeccesary() {        
+        let currentOffset: CGFloat
+        let contentSize: CGFloat
+        let centerOffset: CGFloat
+        let distanceFromCenter: CGFloat
+        let totalItemSpace: CGFloat
+        let minOffset: CGFloat
+        let maxOffset: CGFloat
         
-        if distanceFromCenter > totalItemWidth * 0.5 {
-            let centerX = self.calculatedCenterX()
-            
-            let offset = currentOffset.x > centerX ? 1 : -1
-            let newIndex = self.currentIndex + offset
+        if self.scrollDirection == .Vertical {
+            currentOffset = self.contentOffset.y
+            contentSize = self.contentSize.height
+            centerOffset = (contentSize - self.boundsHeight) * 0.5
+            distanceFromCenter = fabs(currentOffset - centerOffset)
+            totalItemSpace = self.itemSize.height + self.itemSpacing
+        }
+        else /*if self.scrollDirection == .Horizontal*/ {
+            currentOffset = self.contentOffset.x
+            contentSize = self.contentSize.width
+            centerOffset = (contentSize - self.boundsWidth) * 0.5
+            distanceFromCenter = fabs(currentOffset - centerOffset)
+            totalItemSpace = self.itemSize.width + self.itemSpacing
+        }
+        
+        if distanceFromCenter > totalItemSpace * 0.5 {
+            if self.scrollDirection == .Vertical {
+                minOffset = -self.contentInset.top
+                maxOffset = self.contentSize.height - self.contentInset.bottom - totalItemSpace
+            }
+            else /*if self.scrollDirection == .Horizontal*/ {
+                minOffset = -self.contentInset.left
+                maxOffset = self.contentSize.width - self.contentInset.right - totalItemSpace
+            }
+
+            let center = self.calculatedCenter()
+            let indexOffset = currentOffset > center ? 1 : -1
+            let newIndex = self.currentIndex + indexOffset
             self.currentIndex = safemod(newIndex, b: self.totalItems())
-            
-            
-            let minLeft = -self.contentInset.left
-            let maxRight = (self.contentSize.width - self.contentInset.right) - totalItemWidth
-            let xOffset = offset > 0 ? minLeft : maxRight
-            self.contentOffset = CGPointMake(xOffset, currentOffset.y)
+
+            let newOffset = indexOffset > 0 ? minOffset : maxOffset
+            if self.scrollDirection == .Vertical {
+                self.contentOffset = CGPointMake(self.contentOffset.x, newOffset)
+            }
+            else /*if self.scrollDirection == .Horizontal*/ {
+                self.contentOffset = CGPointMake(newOffset, self.contentOffset.y)
+            }
             
             // update anim values
             if self.animating {
-                self.targetXOffset = centerX
-                self.animXOffset = self.contentOffset.x
+                self.targetOffset = center
+                if self.scrollDirection == .Vertical {
+                    self.animOffset = self.contentOffset.y
+                }
+                else /*if self.scrollDirection == .Horizontal*/ {
+                    self.animOffset = self.contentOffset.x
+                }
             }
         }
     }
@@ -204,7 +270,7 @@ class APLoopingScrollView: UIScrollView {
             // add any indexes not previously in visibleIndexes
             if newItems.indexOf(indexPath) != nil {
                 if let view = self.view(forIndexPath: indexPath) {
-                    self.privateDelegate?.infiniteScrollView?(self, willDisplayView: view)
+                    self.privateDelegate?.loopingScrollView?(self, willDisplayView: view)
                     self.insertSubview(view, atIndex: 0)
                 }
             }
@@ -219,7 +285,7 @@ class APLoopingScrollView: UIScrollView {
         for indexPath in removedItems {
             if let view = self.view(forIndexPath: indexPath) {
                 view.removeFromSuperview()
-                self.privateDelegate?.infiniteScrollView?(self, didEndDisplayingView: view)
+                self.privateDelegate?.loopingScrollView?(self, didEndDisplayingView: view)
             }
         }
     }
@@ -227,10 +293,21 @@ class APLoopingScrollView: UIScrollView {
     // given as offsets from the current index, i.e. [-2, -1, 0, 1, 2]
     func visibleItems(forContentOffset contentOffset: CGPoint) -> [IndexPath] {
         var visibleItems = [IndexPath]()
-        let totalItemWidth = itemSize.width + itemSpacing
-        let visibleRect = CGRect(x: contentOffset.x, y: 0, width: totalItemWidth + self.contentInset.left + self.contentInset.right, height: self.boundsHeight)
+        
+        let totalItemSpace: CGFloat
+        let visibleRect: CGRect
+        
+        if self.scrollDirection == .Vertical {
+            totalItemSpace = self.itemSize.height + self.itemSpacing
+            visibleRect = CGRect(x: 0, y: self.contentOffset.y, width: self.boundsWidth, height: totalItemSpace + self.contentInset.top + self.contentInset.bottom)
+        }
+        else /*if self.scrollDirection == .Horizontal*/ {
+            totalItemSpace = self.itemSize.width + self.itemSpacing
+            visibleRect = CGRect(x: self.contentOffset.x, y: 0, width: totalItemSpace + self.contentInset.left + self.contentInset.right, height: self.boundsHeight)
+        }
+        
         let totalItems = self.totalItems()
-        let minItems = Int(ceil(self.contentSize.width / totalItemWidth))
+        let minItems = Int(ceil(self.contentSize.width / totalItemSpace))
         let searchLength = max(totalItems, minItems)
         // go left
         for index in 0 ..< searchLength {
@@ -259,10 +336,27 @@ class APLoopingScrollView: UIScrollView {
     }
     
     func frameForView(distToCenterIndex: Int) -> CGRect {
-        let totalItemWidth = itemSize.width + itemSpacing
-        let xCenter = (self.contentSize.width - totalItemWidth) * 0.5
-        let xOffset = xCenter + CGFloat(distToCenterIndex) * totalItemWidth
-        let frame = CGRect(x: xOffset, y: (self.frameHeight - self.itemSize.height) * 0.5, width: self.itemSize.width, height: self.itemSize.height)
+        let totalItemSpace: CGFloat
+        let screenCenter: CGFloat
+        
+        if self.scrollDirection == .Vertical {
+            totalItemSpace = self.itemSize.height + self.itemSpacing
+            screenCenter = (self.contentSize.height - totalItemSpace) * 0.5
+        }
+        else /*if self.scrollDirection == .Horizontal*/ {
+            totalItemSpace = self.itemSize.width + self.itemSpacing
+            screenCenter = (self.contentSize.width - totalItemSpace) * 0.5
+        }
+
+        let offset = screenCenter + CGFloat(distToCenterIndex) * totalItemSpace
+        let frame: CGRect
+        
+        if self.scrollDirection == .Vertical {
+            frame = CGRect(x: (self.frameWidth - self.itemSize.width) * 0.5, y: offset, width: self.itemSize.width, height: self.itemSize.height)
+        }
+        else /*if self.scrollDirection == .Horizontal*/ {
+            frame = CGRect(x: offset, y: (self.frameHeight - self.itemSize.height) * 0.5, width: self.itemSize.width, height: self.itemSize.height)
+        }
         return frame
     }
     
@@ -298,7 +392,7 @@ class APLoopingScrollView: UIScrollView {
     // MARK: Datasource protocol
     
     func totalItems() -> Int {
-        if let totalItems = self.dataSource?.infiniteScrollViewTotalItems(self) {
+        if let totalItems = self.dataSource?.loopingScrollViewTotalItems(self) {
             return totalItems
         }
         return 0
@@ -310,7 +404,7 @@ class APLoopingScrollView: UIScrollView {
             return self.cachedViews[key]
         }
         else {
-            if let view = self.dataSource?.infiniteScrollView(self, viewForIndex: indexPath.item) {
+            if let view = self.dataSource?.loopingScrollView(self, viewForIndex: indexPath.item) {
                 self.cachedViews.updateValue(view, forKey: key)
                 return view
             }
@@ -332,17 +426,35 @@ class APLoopingScrollView: UIScrollView {
             else if gestureRecognizer.state == .Ended || gestureRecognizer.state == .Cancelled {
                 var targetIndex = 0
                 
-                let totalItemWidth = self.itemSize.width + self.itemSpacing
                 let panVelocity = gestureRecognizer.velocityInView(self)
+                let activeVelocity: CGFloat
+                let totalItemSpace: CGFloat
+                var offset: CGFloat
+                var boundsSize: CGFloat
+                var currentOffset: CGFloat
                 
-                if self.currentIndex == self.dragInitialIndex && fabs(panVelocity.x) > 10 {
-                    targetIndex = panVelocity.x < 0 ?  1 : -1
+                if self.scrollDirection == .Vertical {
+                    activeVelocity = panVelocity.y
+                    boundsSize = self.boundsHeight
+                    totalItemSpace = self.itemSize.height + self.itemSpacing
+                    offset = 0.5 * (-boundsSize + totalItemSpace + self.itemSize.height)
+                    currentOffset = self.contentOffset.y
+                }
+                else /*if self.scrollDirection == .Horizontal*/ {
+                    activeVelocity = panVelocity.x
+                    boundsSize = self.boundsWidth
+                    totalItemSpace = self.itemSize.width + self.itemSpacing
+                    offset = 0.5 * (-boundsSize + totalItemSpace + self.itemSize.width)
+                    currentOffset = self.contentOffset.x
                 }
                 
-                var xOffset = 0.5 * (-self.boundsWidth + totalItemWidth + self.itemSize.width)
-                xOffset += self.boundsWidth * CGFloat(targetIndex)
-                self.targetXOffset = xOffset
-                self.animXOffset = self.contentOffset.x
+                if self.currentIndex == self.dragInitialIndex && fabs(activeVelocity) > 10 {
+                    targetIndex = activeVelocity < 0 ?  1 : -1
+                }
+                
+                offset += boundsSize * CGFloat(targetIndex)
+                self.targetOffset = offset
+                self.animOffset = currentOffset
                 
                 // start the animation
                 self.startTargetOffsetAnimation()
@@ -370,18 +482,26 @@ class APLoopingScrollView: UIScrollView {
     }
     
     func animateToTargetOffset(sender: CADisplayLink) {
-        let delta = self.targetXOffset - self.animXOffset
+        let delta = self.targetOffset - self.animOffset
         if fabs(delta) > 0.1 {
             let dx = delta * 0.3
-            self.animXOffset += dx
-            
-            self.setContentOffset(CGPoint(x: self.animXOffset, y: self.contentOffset.y), animated: false)
+            self.animOffset += dx
+            self._setContentOffset(self.animOffset)
         }
         else {
-            self.setContentOffset(CGPoint(x: self.targetXOffset, y: self.contentOffset.y), animated: false)
+            self._setContentOffset(self.animOffset)
             self.stopTargetOffsetAnimation()
             // inform the delegate
-            self.privateDelegate?.infiniteScrollView?(self, didScrollToIndex: self.currentIndex)
+            self.privateDelegate?.loopingScrollView?(self, didScrollToIndex: self.currentIndex)
+        }
+    }
+    
+    private func _setContentOffset(offset: CGFloat) {
+        if self.scrollDirection == .Vertical {
+            self.setContentOffset(CGPoint(x: self.contentOffset.x, y: offset), animated: false)
+        }
+        else /*if self.scrollDirection == .Horizontal*/ {
+           self.setContentOffset(CGPoint(x: offset, y: self.contentOffset.y), animated: false)
         }
     }
     
@@ -391,7 +511,7 @@ class APLoopingScrollView: UIScrollView {
         self.displayLink?.invalidate()
         self.displayLink = nil
         
-        self.targetXOffset = 0
-        self.animXOffset = 0
+        self.targetOffset = 0
+        self.animOffset = 0
     }
 }

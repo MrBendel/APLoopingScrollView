@@ -11,7 +11,7 @@ import UIKit
 class ExampleHorz: UIViewController, APLoopingScrollViewDataSource, APLoopingScrollViewDelegate {
     
     @IBOutlet var backButton: UIButton?
-    @IBOutlet var infiniteScrollView: LoopingScrollViewWithScaling?
+    @IBOutlet var loopingScrollView: LoopingScrollViewWithScaling?
     
     var cacheCount = 0
     var cellColors = [UIColor.cyanColor().colorWithAlphaComponent(0.5), UIColor.yellowColor().colorWithAlphaComponent(0.5),UIColor.greenColor().colorWithAlphaComponent(0.5),UIColor.grayColor().colorWithAlphaComponent(0.5)]
@@ -19,29 +19,75 @@ class ExampleHorz: UIViewController, APLoopingScrollViewDataSource, APLoopingScr
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let infiniteScrollView = self.infiniteScrollView {
-            let frame = infiniteScrollView.frame
-            infiniteScrollView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
-            infiniteScrollView.delegate = self
-            infiniteScrollView.dataSource = self
-            infiniteScrollView.scrollDirection = .Horizontal
-            infiniteScrollView.itemSize = CGSize(width: CGRectGetHeight(frame) * 0.5, height: CGRectGetHeight(frame) * 0.5)
-            infiniteScrollView.itemSpacing = 6
-            infiniteScrollView.edgeScale = 0.9
-            infiniteScrollView.pagingEnabled = true
+        if let loopingScrollView = self.loopingScrollView {
+            let frame = loopingScrollView.frame
+            loopingScrollView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
+            loopingScrollView.delegate = self
+            loopingScrollView.dataSource = self
+            loopingScrollView.scrollDirection = .Horizontal
+            loopingScrollView.itemSize = CGSize(width: CGRectGetHeight(frame) * 0.5, height: CGRectGetHeight(frame) * 0.5)
+            loopingScrollView.itemSpacing = 6
+            loopingScrollView.edgeScale = 0.9
+            loopingScrollView.pagingEnabled = true
         }
     }
     
     @IBAction func handleClearData(sender: UIButton) {
         ++self.cacheCount
-        self.infiniteScrollView?.reloadData()
+        self.loopingScrollView?.reloadData()
     }
     
-    func infiniteScrollViewTotalItems(scrollView: APLoopingScrollView) -> Int {
+    func loopingScrollViewTotalItems(scrollView: APLoopingScrollView) -> Int {
         return 10
     }
     
-    func infiniteScrollView(scrollView: APLoopingScrollView, viewForIndex index: Int) -> UIView {
+    func loopingScrollView(scrollView: APLoopingScrollView, viewForIndex index: Int) -> UIView {
+        let itemSize = scrollView.itemSize
+        let cell = ExampleCell(frame: CGRect(origin: CGPointZero, size: itemSize))
+        cell.text = "\(index)"
+        let colorIndex = self.cacheCount%self.cellColors.count
+        cell.backgroundColor = self.cellColors[colorIndex]
+        return cell
+    }
+    
+    @IBAction func backButtonTouchUpInside(sender: UIButton?) {
+        self.navigationController?.popViewControllerAnimated(true)
+    }
+}
+
+class ExampleVert: UIViewController, APLoopingScrollViewDataSource, APLoopingScrollViewDelegate {
+    
+    @IBOutlet var backButton: UIButton?
+    @IBOutlet var loopingScrollView: APLoopingScrollView?
+    
+    var cacheCount = 0
+    var cellColors = [UIColor.cyanColor().colorWithAlphaComponent(0.5), UIColor.yellowColor().colorWithAlphaComponent(0.5),UIColor.greenColor().colorWithAlphaComponent(0.5),UIColor.grayColor().colorWithAlphaComponent(0.5)]
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        if let loopingScrollView = self.loopingScrollView {
+            let frame = loopingScrollView.frame
+            loopingScrollView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.3)
+            loopingScrollView.delegate = self
+            loopingScrollView.dataSource = self
+            loopingScrollView.scrollDirection = .Vertical
+            loopingScrollView.itemSize = CGSize(width: CGRectGetWidth(frame) * 0.5, height: CGRectGetWidth(frame) * 0.5)
+            loopingScrollView.itemSpacing = 6
+            loopingScrollView.pagingEnabled = false
+        }
+    }
+    
+    @IBAction func handleClearData(sender: UIButton) {
+        ++self.cacheCount
+        self.loopingScrollView?.reloadData()
+    }
+    
+    func loopingScrollViewTotalItems(scrollView: APLoopingScrollView) -> Int {
+        return 10
+    }
+    
+    func loopingScrollView(scrollView: APLoopingScrollView, viewForIndex index: Int) -> UIView {
         let itemSize = scrollView.itemSize
         let cell = ExampleCell(frame: CGRect(origin: CGPointZero, size: itemSize))
         cell.text = "\(index)"

@@ -93,9 +93,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyH-Vg-ZeF">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyH-Vg-ZeF">
                                 <rect key="frame" x="20" y="20" width="92" height="44"/>
-                                <color key="backgroundColor" red="0.82744997740000004" green="0.60391998290000004" blue="0.1372500062" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30979999899999999" green="0.63921999929999995" blue="0.34117999669999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="tyH-Vg-ZeF" secondAttribute="height" multiplier="23:11" id="fa1-oT-d4I"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -111,28 +114,46 @@
                                     <constraint firstAttribute="width" secondItem="uyV-an-1Kl" secondAttribute="height" multiplier="300:173" id="G6o-AQ-oOi"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7xl-Rg-n5G">
+                                <rect key="frame" x="446" y="20" width="145" height="44"/>
+                                <color key="backgroundColor" red="0.2431399971" green="0.67843002080000003" blue="0.95686000589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7xl-Rg-n5G" secondAttribute="height" multiplier="145:44" id="7Nq-3A-IlI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <state key="normal" title="reloadData">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleClearData:" destination="OQp-XN-nMz" eventType="touchUpInside" id="Dz0-Z3-UIf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="uyV-an-1Kl" firstAttribute="leading" secondItem="YIE-48-Coy" secondAttribute="leadingMargin" constant="-20" id="AxW-rp-96R"/>
                             <constraint firstAttribute="trailingMargin" secondItem="uyV-an-1Kl" secondAttribute="trailing" constant="-20" id="FfH-YY-Gqr"/>
                             <constraint firstItem="D9z-sd-qjg" firstAttribute="top" secondItem="uyV-an-1Kl" secondAttribute="bottom" constant="92" id="M71-Or-w5j"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="tyH-Vg-ZeF" secondAttribute="leading" id="RUl-dX-FFB"/>
+                            <constraint firstItem="7xl-Rg-n5G" firstAttribute="top" secondItem="9ym-ZK-MKP" secondAttribute="bottom" id="Th5-tY-jZg"/>
                             <constraint firstItem="uyV-an-1Kl" firstAttribute="top" secondItem="9ym-ZK-MKP" secondAttribute="bottom" constant="142" id="joj-14-rls"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="7xl-Rg-n5G" secondAttribute="trailing" constant="-11" id="pCw-gf-h3V"/>
+                            <constraint firstItem="tyH-Vg-ZeF" firstAttribute="top" secondItem="9ym-ZK-MKP" secondAttribute="bottom" id="rcX-wB-bPs"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="backButton" destination="tyH-Vg-ZeF" id="2fm-CQ-0GU"/>
-                        <outlet property="infiniteScrollView" destination="uyV-an-1Kl" id="8hA-S6-rmb"/>
+                        <outlet property="loopingScrollView" destination="uyV-an-1Kl" id="8hA-S6-rmb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wvx-6X-sCl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="866" y="-195"/>
         </scene>
-        <!--View Controller-->
+        <!--Example Vert-->
         <scene sceneID="BnN-F5-tGI">
             <objects>
-                <viewController id="X0C-1I-3lj" sceneMemberID="viewController">
+                <viewController id="X0C-1I-3lj" customClass="ExampleVert" customModule="APLoopingScrollView" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bPu-FZ-cge"/>
                         <viewControllerLayoutGuide type="bottom" id="ONd-Se-GTq"/>
@@ -141,17 +162,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gD0-Sh-wHu">
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gD0-Sh-wHu">
                                 <rect key="frame" x="20" y="20" width="92" height="44"/>
-                                <color key="backgroundColor" red="0.82744997740000004" green="0.60391998290000004" blue="0.1372500062" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.27450999619999999" green="0.45489999650000001" blue="0.71764999630000004" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="gD0-Sh-wHu" secondAttribute="height" multiplier="23:11" id="5Ef-b3-u7F"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
                                 <state key="normal" title="Back">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="backButtonTouchUpInside:" destination="X0C-1I-3lj" eventType="touchUpInside" id="XC2-kS-gAL"/>
+                                </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Loh-1g-oRn">
+                                <rect key="frame" x="20" y="85" width="143" height="44"/>
+                                <color key="backgroundColor" red="0.2431399971" green="0.67843002080000003" blue="0.95686000589999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Loh-1g-oRn" secondAttribute="height" multiplier="13:4" id="axS-wd-c2Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
+                                <state key="normal" title="Clear Data">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="handleClearData:" destination="X0C-1I-3lj" eventType="touchUpInside" id="ltG-0G-YgH"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwn-tx-UMe" customClass="APLoopingScrollView" customModule="APLoopingScrollView" customModuleProvider="target">
+                                <rect key="frame" x="185" y="0.0" width="415" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <constraints>
+                            <constraint firstItem="gD0-Sh-wHu" firstAttribute="top" secondItem="bPu-FZ-cge" secondAttribute="bottom" id="28a-g9-aTE"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="Loh-1g-oRn" secondAttribute="leading" id="AT2-G5-FyR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dwn-tx-UMe" secondAttribute="trailing" id="BAn-ME-dPt"/>
+                            <constraint firstItem="Loh-1g-oRn" firstAttribute="top" secondItem="gD0-Sh-wHu" secondAttribute="bottom" constant="21" id="LuY-yg-Pio"/>
+                            <constraint firstItem="ONd-Se-GTq" firstAttribute="top" secondItem="dwn-tx-UMe" secondAttribute="bottom" id="efY-RG-G4k"/>
+                            <constraint firstItem="dwn-tx-UMe" firstAttribute="leading" secondItem="Loh-1g-oRn" secondAttribute="trailing" id="fHK-4y-9Si"/>
+                            <constraint firstItem="dwn-tx-UMe" firstAttribute="top" secondItem="bPu-FZ-cge" secondAttribute="bottom" constant="-20" id="iB4-Pw-9s5"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="gD0-Sh-wHu" secondAttribute="leading" id="ytR-kH-1wO"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="loopingScrollView" destination="dwn-tx-UMe" id="MjY-qK-Cxd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="i5k-6X-RO9" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hQ8-bp-pem">
