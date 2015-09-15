@@ -1,5 +1,5 @@
 # APLoopingScrollView
-After failing to find a descent looping scroll view impelementation I set out to build my own. APLoopingScrollView is a direct subclass of `UIScrollView` that displays collections of "cards" in either horizontal or vertical orientation. 
+After failing to find a decent looping scroll view impelementation I set out to build my own. APLoopingScrollView is a direct subclass of `UIScrollView` that displays collections of "cards" in either horizontal or vertical orientation. 
 
 You have control over:
 * Item Size
