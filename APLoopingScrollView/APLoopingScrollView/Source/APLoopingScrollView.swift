@@ -1,6 +1,6 @@
 //
-//  InfiniteScrollView.swift
-//  InfiniteScrollView
+//  APLoopingScrollView.swift
+//  APLoopingScrollView
 //
 //  Created by Andrew Poes on 8/25/15.
 //  Copyright (c) 2015 Andrew Poes. All rights reserved.
@@ -8,22 +8,22 @@
 
 import UIKit
 
-func ==(lhs: InfiniteScrollView.IndexPath, rhs: InfiniteScrollView.IndexPath) -> Bool {
+func ==(lhs: APLoopingScrollView.IndexPath, rhs: APLoopingScrollView.IndexPath) -> Bool {
     return lhs.item == rhs.item && lhs.offset == rhs.offset
 }
 
-@objc protocol InfiniteScrollViewDataSource: class {
-    func infiniteScrollViewTotalItems(scrollView: InfiniteScrollView) -> Int
-    func infiniteScrollView(scrollView: InfiniteScrollView, viewForIndex index: Int) -> UIView
+@objc protocol APLoopingScrollViewDataSource: class {
+    func infiniteScrollViewTotalItems(scrollView: APLoopingScrollView) -> Int
+    func infiniteScrollView(scrollView: APLoopingScrollView, viewForIndex index: Int) -> UIView
 }
 
-@objc protocol InfiniteScrollViewDelegate: UIScrollViewDelegate {
-    optional func infiniteScrollView(scrollView: InfiniteScrollView, willDisplayView view: UIView)
-    optional func infiniteScrollView(scrollView: InfiniteScrollView, didEndDisplayingView view: UIView)
-    optional func infiniteScrollView(scrollView: InfiniteScrollView, didScrollToIndex index: Int)
+@objc protocol APLoopingScrollViewDelegate: UIScrollViewDelegate {
+    optional func infiniteScrollView(scrollView: APLoopingScrollView, willDisplayView view: UIView)
+    optional func infiniteScrollView(scrollView: APLoopingScrollView, didEndDisplayingView view: UIView)
+    optional func infiniteScrollView(scrollView: APLoopingScrollView, didScrollToIndex index: Int)
 }
 
-class InfiniteScrollView: UIScrollView {
+class APLoopingScrollView: UIScrollView {
     struct IndexPath: Hashable {
         var item: Int
         var offset: Int
@@ -39,24 +39,30 @@ class InfiniteScrollView: UIScrollView {
         }
     }
     
-    weak var dataSource: InfiniteScrollViewDataSource?
-    weak var privateDelegate: InfiniteScrollViewDelegate? {
-        get { return self.delegate as? InfiniteScrollViewDelegate }
+    enum ScrollDirection {
+        case Horizontal
+        case Vertical
+    }
+    
+    weak var dataSource: APLoopingScrollViewDataSource?
+    weak var privateDelegate: APLoopingScrollViewDelegate? {
+        get { return self.delegate as? APLoopingScrollViewDelegate }
         set { self.delegate = newValue }
     }
     override var delegate: UIScrollViewDelegate? {
         set {
-            if let supportedDelegate = newValue as? InfiniteScrollViewDelegate {
+            if let supportedDelegate = newValue as? APLoopingScrollViewDelegate {
                 super.delegate = supportedDelegate
             }
             else if newValue != nil {
-                print("Warning: wrong delegate type set. Should be of type InfiniteScrollViewDelegate")
+                print("Warning: wrong delegate type set. Should be of type APLoopingScrollViewDelegate")
             }
         }
         get { return super.delegate }
     }
     
-    var itemSize: CGSize {
+    var scrollDirection: ScrollDirection = .Horizontal
+    var itemSize: CGSize = CGSize() {
         didSet {
             self.setNeedsUpdateLayoutInfo()
             self.setNeedsLayout()
@@ -97,11 +103,24 @@ class InfiniteScrollView: UIScrollView {
         return true
     }
     
+    convenience init(frame: CGRect, scrollDirection: ScrollDirection) {
+        self.init(frame: frame)
+        self.scrollDirection = scrollDirection
+    }
+    
     override init(frame: CGRect) {
-        self.itemSize = frame.size
-        
         super.init(frame: frame)
-        
+        self.sharedInit()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        self.sharedInit()
+    }
+    
+    func sharedInit() {
+        self.itemSize = self.frame.size
+        self.clipsToBounds = true
         self.indicatorStyle = .White
         self.showsHorizontalScrollIndicator = false
         self.showsVerticalScrollIndicator = false
@@ -109,12 +128,8 @@ class InfiniteScrollView: UIScrollView {
         // set the scroll speed to be tighter
         self.decelerationRate = UIScrollViewDecelerationRateFast
         
-        // listen to pan gesture
+//         listen to pan gesture
         self.panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override var contentOffset: CGPoint {
@@ -268,9 +283,9 @@ class InfiniteScrollView: UIScrollView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
         // debug logs
-        //        println("x: \(self.contentOffset.x), left: \(self.contentInset.left), right: \(self.contentInset.right)")
+//        println("x: \(self.contentOffset.x), left: \(self.contentInset.left), right: \(self.contentInset.right)")
+        
         // updates the layout info if neccesary, that is
         // contentSize and edge insets to match view width
         self.updateViewLayoutInfo()

@@ -1,6 +1,6 @@
 //
-//  InfiniteScrollViewWithScaling.swift
-//  InfiniteScrollView
+//  LoopingScrollViewWithScaling.swift
+//  APLoopingScrollView
 //
 //  Created by Andrew Poes on 9/14/15.
 //  Copyright © 2015 Andrew Poes. All rights reserved.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfiniteScrollViewWithScaling: InfiniteScrollView {
+class LoopingScrollViewWithScaling: APLoopingScrollView {
     var edgeScale: CGFloat = 0.9
     override func updateViews() {
         // reset the transforms

@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A75971EF1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75971EE1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift */; };
+		A75971EF1BA7286E0042D3C4 /* LoopingScrollViewWithScaling.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75971EE1BA7286E0042D3C4 /* LoopingScrollViewWithScaling.swift */; };
+		A75971F11BA762A80042D3C4 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75971F01BA762A80042D3C4 /* Examples.swift */; };
 		A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */; };
 		A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F61B8C2D810075BCF8 /* ViewController.swift */; };
-		A75A590B1B8C2D820075BCF8 /* InfinityScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */; };
-		A75A59171B8C2ECC0075BCF8 /* InfiniteScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59161B8C2ECC0075BCF8 /* InfiniteScrollView.swift */; };
-		A75A59191B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */; };
+		A75A590B1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A590A1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift */; };
+		A75A59171B8C2ECC0075BCF8 /* APLoopingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59161B8C2ECC0075BCF8 /* APLoopingScrollView.swift */; };
+		A75A59191B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59181B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift */; };
 		A7A346A61BA707D300064306 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A346A51BA707D300064306 /* Images.xcassets */; };
 		A7A346D81BA7093900064306 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A346D71BA7093900064306 /* Storyboard.storyboard */; };
 		A7A346DA1BA7094500064306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7A346D91BA7094500064306 /* LaunchScreen.xib */; };
@@ -29,16 +30,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		A75971EE1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfiniteScrollViewWithScaling.swift; path = InfiniteScrollView/Examples/InfiniteScrollViewWithScaling.swift; sourceTree = SOURCE_ROOT; };
-		A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InfiniteScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A75A58F31B8C2D810075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = InfiniteScrollView/Examples/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
-		A75A58F61B8C2D810075BCF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = InfiniteScrollView/Examples/ViewController.swift; sourceTree = SOURCE_ROOT; };
-		A75A59041B8C2D820075BCF8 /* InfiniteScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InfiniteScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A75A59091B8C2D820075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfinityScrollViewTests.swift; sourceTree = "<group>"; };
-		A75A59161B8C2ECC0075BCF8 /* InfiniteScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfiniteScrollView.swift; path = InfiniteScrollView/Source/InfiniteScrollView.swift; sourceTree = SOURCE_ROOT; };
-		A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InfinityScrollViewHelpers.swift; path = InfiniteScrollView/Source/InfinityScrollViewHelpers.swift; sourceTree = SOURCE_ROOT; };
+		A75971EE1BA7286E0042D3C4 /* LoopingScrollViewWithScaling.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoopingScrollViewWithScaling.swift; path = APLoopingScrollView/Examples/LoopingScrollViewWithScaling.swift; sourceTree = SOURCE_ROOT; };
+		A75971F01BA762A80042D3C4 /* Examples.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Examples.swift; path = APLoopingScrollView/Examples/Examples.swift; sourceTree = SOURCE_ROOT; };
+		A75A58EF1B8C2D810075BCF8 /* APLoopingScrollView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = APLoopingScrollView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A75A58F31B8C2D810075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = APLoopingScrollView/Info.plist; sourceTree = "<group>"; };
+		A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = APLoopingScrollView/Examples/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		A75A58F61B8C2D810075BCF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = APLoopingScrollView/Examples/ViewController.swift; sourceTree = SOURCE_ROOT; };
+		A75A59041B8C2D820075BCF8 /* APLoopingScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APLoopingScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A75A59091B8C2D820075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = APLoopingScrollViewTests/Info.plist; sourceTree = "<group>"; };
+		A75A590A1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfiniteScrollViewTests.swift; path = APLoopingScrollViewTests/InfiniteScrollViewTests.swift; sourceTree = "<group>"; };
+		A75A59161B8C2ECC0075BCF8 /* APLoopingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APLoopingScrollView.swift; path = APLoopingScrollView/Source/APLoopingScrollView.swift; sourceTree = SOURCE_ROOT; };
+		A75A59181B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APLoopingScrollViewHelpers.swift; path = APLoopingScrollView/Source/APLoopingScrollViewHelpers.swift; sourceTree = SOURCE_ROOT; };
 		A7A346A51BA707D300064306 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A7A346D71BA7093900064306 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		A7A346D91BA7094500064306 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
@@ -65,7 +67,7 @@
 		A75971ED1BA728500042D3C4 /* Scale Scroll */ = {
 			isa = PBXGroup;
 			children = (
-				A75971EE1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift */,
+				A75971EE1BA7286E0042D3C4 /* LoopingScrollViewWithScaling.swift */,
 			);
 			name = "Scale Scroll";
 			sourceTree = "<group>";
@@ -73,8 +75,8 @@
 		A75A58E61B8C2D810075BCF8 = {
 			isa = PBXGroup;
 			children = (
-				A75A58F11B8C2D810075BCF8 /* InfiniteScrollView */,
-				A75A59071B8C2D820075BCF8 /* InfiniteScrollViewTests */,
+				A75A58F11B8C2D810075BCF8 /* APLoopingScrollView */,
+				A75A59071B8C2D820075BCF8 /* APLoopingScrollViewTests */,
 				A75A58F01B8C2D810075BCF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -82,13 +84,13 @@
 		A75A58F01B8C2D810075BCF8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */,
-				A75A59041B8C2D820075BCF8 /* InfiniteScrollViewTests.xctest */,
+				A75A58EF1B8C2D810075BCF8 /* APLoopingScrollView.app */,
+				A75A59041B8C2D820075BCF8 /* APLoopingScrollViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A75A58F11B8C2D810075BCF8 /* InfiniteScrollView */ = {
+		A75A58F11B8C2D810075BCF8 /* APLoopingScrollView */ = {
 			isa = PBXGroup;
 			children = (
 				A75A59151B8C2EBE0075BCF8 /* Example */,
@@ -96,7 +98,7 @@
 				A7DFC2E11BA7029500CB87A9 /* Resources */,
 				A75A58F21B8C2D810075BCF8 /* Supporting Files */,
 			);
-			name = InfiniteScrollView;
+			name = APLoopingScrollView;
 			path = InfinityScrollView;
 			sourceTree = "<group>";
 		};
@@ -108,13 +110,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A75A59071B8C2D820075BCF8 /* InfiniteScrollViewTests */ = {
+		A75A59071B8C2D820075BCF8 /* APLoopingScrollViewTests */ = {
 			isa = PBXGroup;
 			children = (
-				A75A590A1B8C2D820075BCF8 /* InfinityScrollViewTests.swift */,
+				A75A590A1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift */,
 				A75A59081B8C2D820075BCF8 /* Supporting Files */,
 			);
-			name = InfiniteScrollViewTests;
+			name = APLoopingScrollViewTests;
 			path = InfinityScrollViewTests;
 			sourceTree = "<group>";
 		};
@@ -129,8 +131,8 @@
 		A75A59141B8C2EB50075BCF8 /* InfiniteScrollView Source */ = {
 			isa = PBXGroup;
 			children = (
-				A75A59161B8C2ECC0075BCF8 /* InfiniteScrollView.swift */,
-				A75A59181B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift */,
+				A75A59161B8C2ECC0075BCF8 /* APLoopingScrollView.swift */,
+				A75A59181B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift */,
 			);
 			name = "InfiniteScrollView Source";
 			sourceTree = "<group>";
@@ -141,6 +143,7 @@
 				A75971ED1BA728500042D3C4 /* Scale Scroll */,
 				A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */,
 				A75A58F61B8C2D810075BCF8 /* ViewController.swift */,
+				A75971F01BA762A80042D3C4 /* Examples.swift */,
 			);
 			name = Example;
 			sourceTree = "<group>";
@@ -158,9 +161,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A75A58EE1B8C2D810075BCF8 /* InfiniteScrollView */ = {
+		A75A58EE1B8C2D810075BCF8 /* APLoopingScrollView */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollView" */;
+			buildConfigurationList = A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "APLoopingScrollView" */;
 			buildPhases = (
 				A75A58EB1B8C2D810075BCF8 /* Sources */,
 				A75A58EC1B8C2D810075BCF8 /* Frameworks */,
@@ -170,14 +173,14 @@
 			);
 			dependencies = (
 			);
-			name = InfiniteScrollView;
+			name = APLoopingScrollView;
 			productName = InfinityScrollView;
-			productReference = A75A58EF1B8C2D810075BCF8 /* InfiniteScrollView.app */;
+			productReference = A75A58EF1B8C2D810075BCF8 /* APLoopingScrollView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A75A59031B8C2D820075BCF8 /* InfiniteScrollViewTests */ = {
+		A75A59031B8C2D820075BCF8 /* APLoopingScrollViewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollViewTests" */;
+			buildConfigurationList = A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "APLoopingScrollViewTests" */;
 			buildPhases = (
 				A75A59001B8C2D820075BCF8 /* Sources */,
 				A75A59011B8C2D820075BCF8 /* Frameworks */,
@@ -188,9 +191,9 @@
 			dependencies = (
 				A75A59061B8C2D820075BCF8 /* PBXTargetDependency */,
 			);
-			name = InfiniteScrollViewTests;
+			name = APLoopingScrollViewTests;
 			productName = InfinityScrollViewTests;
-			productReference = A75A59041B8C2D820075BCF8 /* InfiniteScrollViewTests.xctest */;
+			productReference = A75A59041B8C2D820075BCF8 /* APLoopingScrollViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -206,6 +209,7 @@
 				TargetAttributes = {
 					A75A58EE1B8C2D810075BCF8 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = 7JZ3Q8HZ8R;
 					};
 					A75A59031B8C2D820075BCF8 = {
 						CreatedOnToolsVersion = 6.4;
@@ -213,7 +217,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "InfiniteScrollView" */;
+			buildConfigurationList = A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "APLoopingScrollView" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -226,8 +230,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A75A58EE1B8C2D810075BCF8 /* InfiniteScrollView */,
-				A75A59031B8C2D820075BCF8 /* InfiniteScrollViewTests */,
+				A75A58EE1B8C2D810075BCF8 /* APLoopingScrollView */,
+				A75A59031B8C2D820075BCF8 /* APLoopingScrollViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -257,10 +261,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A75A59171B8C2ECC0075BCF8 /* InfiniteScrollView.swift in Sources */,
-				A75971EF1BA7286E0042D3C4 /* InfiniteScrollViewWithScaling.swift in Sources */,
-				A75A59191B8C2EFD0075BCF8 /* InfinityScrollViewHelpers.swift in Sources */,
+				A75A59171B8C2ECC0075BCF8 /* APLoopingScrollView.swift in Sources */,
+				A75971EF1BA7286E0042D3C4 /* LoopingScrollViewWithScaling.swift in Sources */,
+				A75A59191B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift in Sources */,
 				A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */,
+				A75971F11BA762A80042D3C4 /* Examples.swift in Sources */,
 				A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -269,7 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A75A590B1B8C2D820075BCF8 /* InfinityScrollViewTests.swift in Sources */,
+				A75A590B1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,7 +283,7 @@
 /* Begin PBXTargetDependency section */
 		A75A59061B8C2D820075BCF8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = A75A58EE1B8C2D810075BCF8 /* InfiniteScrollView */;
+			target = A75A58EE1B8C2D810075BCF8 /* APLoopingScrollView */;
 			targetProxy = A75A59051B8C2D820075BCF8 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -371,7 +376,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = InfiniteScrollView/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/APLoopingScrollView/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -381,7 +387,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = InfiniteScrollView/Info.plist;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = "$(SRCROOT)/APLoopingScrollView/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -424,7 +431,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "InfiniteScrollView" */ = {
+		A75A58EA1B8C2D810075BCF8 /* Build configuration list for PBXProject "APLoopingScrollView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A75A590C1B8C2D820075BCF8 /* Debug */,
@@ -433,7 +440,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollView" */ = {
+		A75A590E1B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "APLoopingScrollView" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A75A590F1B8C2D820075BCF8 /* Debug */,
@@ -442,7 +449,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "InfiniteScrollViewTests" */ = {
+		A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "APLoopingScrollViewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A75A59121B8C2D820075BCF8 /* Debug */,
