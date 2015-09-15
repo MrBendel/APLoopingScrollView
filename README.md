@@ -24,7 +24,7 @@ Return a view for the corrosponding index. *Note, this may be called multiple ti
 
 View's are not reused like in a table or collection view, but they are internaly cached. If you need to free the internal cache, call `reloadData` to force reload all visible views.
 
-#TODO
+##TODO
 
 * Logic for handling animation changes for orientation
 * Logic for handling insertions or deletions from the view
