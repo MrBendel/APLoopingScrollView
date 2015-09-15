@@ -132,10 +132,9 @@ class APLoopingScrollView: UIScrollView {
     func sharedInit() {
         self.itemSize = self.frame.size
         self.clipsToBounds = true
-//        self.showsHorizontalScrollIndicator = false
-//        self.showsVerticalScrollIndicator = false
-//        self.alwaysBounceHorizontal = true
-//        self.alwaysBounceVertical = true
+        // Uncomment if you want to see whats happening
+        self.showsHorizontalScrollIndicator = false
+        self.showsVerticalScrollIndicator = false
         
 //         listen to pan gesture
         self.panGestureRecognizer.addTarget(self, action: "handlePanGesture:")
@@ -198,7 +197,7 @@ class APLoopingScrollView: UIScrollView {
         }
     }
     
-    func recenterIfNeccesary() {        
+    func recenterIfNeccesary() {
         let currentOffset: CGFloat
         let contentSize: CGFloat
         let centerOffset: CGFloat

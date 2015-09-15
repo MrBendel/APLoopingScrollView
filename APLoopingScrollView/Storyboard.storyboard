@@ -162,6 +162,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwn-tx-UMe" customClass="APLoopingScrollView" customModule="APLoopingScrollView" customModuleProvider="target">
+                                <rect key="frame" x="93" y="0.0" width="415" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="dwn-tx-UMe" secondAttribute="height" multiplier="83:120" id="zGr-75-NVi"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gD0-Sh-wHu">
                                 <rect key="frame" x="20" y="20" width="92" height="44"/>
                                 <color key="backgroundColor" red="0.27450999619999999" green="0.45489999650000001" blue="0.71764999630000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -190,22 +197,30 @@
                                     <action selector="handleClearData:" destination="X0C-1I-3lj" eventType="touchUpInside" id="ltG-0G-YgH"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dwn-tx-UMe" customClass="APLoopingScrollView" customModule="APLoopingScrollView" customModuleProvider="target">
-                                <rect key="frame" x="185" y="0.0" width="415" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                         <constraints>
                             <constraint firstItem="gD0-Sh-wHu" firstAttribute="top" secondItem="bPu-FZ-cge" secondAttribute="bottom" id="28a-g9-aTE"/>
                             <constraint firstAttribute="leadingMargin" secondItem="Loh-1g-oRn" secondAttribute="leading" id="AT2-G5-FyR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="dwn-tx-UMe" secondAttribute="trailing" id="BAn-ME-dPt"/>
+                            <constraint firstItem="dwn-tx-UMe" firstAttribute="top" secondItem="bPu-FZ-cge" secondAttribute="bottom" constant="-20" id="Dp7-Mn-7Qi"/>
                             <constraint firstItem="Loh-1g-oRn" firstAttribute="top" secondItem="gD0-Sh-wHu" secondAttribute="bottom" constant="21" id="LuY-yg-Pio"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dwn-tx-UMe" secondAttribute="trailing" constant="20" id="Os3-lc-mOV"/>
+                            <constraint firstItem="ONd-Se-GTq" firstAttribute="top" secondItem="dwn-tx-UMe" secondAttribute="bottom" id="bJK-es-A2V"/>
                             <constraint firstItem="ONd-Se-GTq" firstAttribute="top" secondItem="dwn-tx-UMe" secondAttribute="bottom" id="efY-RG-G4k"/>
                             <constraint firstItem="dwn-tx-UMe" firstAttribute="leading" secondItem="Loh-1g-oRn" secondAttribute="trailing" id="fHK-4y-9Si"/>
+                            <constraint firstItem="dwn-tx-UMe" firstAttribute="leading" secondItem="lnd-4c-qx4" secondAttribute="leadingMargin" constant="20" id="gO5-Pm-gSu"/>
                             <constraint firstItem="dwn-tx-UMe" firstAttribute="top" secondItem="bPu-FZ-cge" secondAttribute="bottom" constant="-20" id="iB4-Pw-9s5"/>
                             <constraint firstAttribute="leadingMargin" secondItem="gD0-Sh-wHu" secondAttribute="leading" id="ytR-kH-1wO"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="BAn-ME-dPt"/>
+                                <exclude reference="fHK-4y-9Si"/>
+                                <exclude reference="iB4-Pw-9s5"/>
+                                <exclude reference="efY-RG-G4k"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="loopingScrollView" destination="dwn-tx-UMe" id="MjY-qK-Cxd"/>
