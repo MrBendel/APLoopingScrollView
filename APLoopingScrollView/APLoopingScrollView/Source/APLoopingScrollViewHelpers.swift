@@ -58,22 +58,6 @@ func CGRectSetSize(rect: CGRect, size: CGSize) -> CGRect {
 
 // Grabbed from https://github.com/pNre/ExSwift
 
-internal extension Array {
-    /**
-    Index of the first occurrence of item, if found.
-
-    - parameter item: The item to search for
-    - returns: Index of the matched item or nil
-    */
-    func indexOf <U: Equatable> (item: U) -> Int? {
-        if item is Element {
-            return unsafeBitCast(self, [U].self).indexOf(item)
-        }
-        
-        return nil
-    }
-}
-
 internal extension Dictionary {
     /**
     Checks if a key exists in the dictionary.
