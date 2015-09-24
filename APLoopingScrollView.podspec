@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "APLoopingScrollView"
-  s.version      = "1.0.1"
+  s.version      = "1.0.2"
   s.summary      = "Looping UIScrollView implementation, supports custom page size and item spacing. Built in Swift"
 
   s.description  = "After failing to find a decent looping scroll view impelementation I set out to build my own. APLoopingScrollView is a direct subclass of UIScrollView that displays collections of cards in either horizontal or vertical orientation.
@@ -77,7 +77,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/MrBendel/APLoopingScrollView.git", :tag => "1.0.1", :commit => "f05230fda1265557e7b9df8774de04e5454f4079" }
+  s.source       = { :git => "https://github.com/MrBendel/APLoopingScrollView.git", :tag => "1.0.2", :commit => "eb28db91771320665ab8e676ba28f8320c6a5957" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
