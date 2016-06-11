@@ -126,12 +126,22 @@ class APLoopingScrollView: UIScrollView {
   }
   var animationProps = AnimationProps()
 
-  override var pagingEnabled: Bool {
+  // Override pagingEnabled with our own private implementation so that we don't inherit the default
+  // behavior. We implement custom paging (See animations below).
+  private var _pagingEnabled: Bool = false {
     didSet {
-      if pagingEnabled {
+      if _pagingEnabled {
         // set the scroll speed to be tighter
         self.decelerationRate = UIScrollViewDecelerationRateFast
       }
+    }
+  }
+  override var pagingEnabled: Bool {
+    get {
+      return _pagingEnabled
+    }
+    set {
+      _pagingEnabled = newValue
     }
   }
 
@@ -502,7 +512,8 @@ class APLoopingScrollView: UIScrollView {
       self._setContentOffset(self.animationProps.endValue)
       stopTargetOffsetAnimation()
     } else {
-      let ease = EaseOutExponential(progress)
+      // Exponential easing. TODO: Implement customizable easing funcs.
+      let ease = (progress > 0.0) ? 1 - pow(2, -10 * progress) : progress;
       let current = self.animationProps.current(CGFloat(ease))
       self._setContentOffset(current)
     }
@@ -530,8 +541,5 @@ class APLoopingScrollView: UIScrollView {
     self.animationProps.reset()
     self.displayLink?.invalidate()
     self.displayLink = nil
-    // Notify the delegate.
-    self.privateDelegate?.loopingScrollView?(self, didScrollToIndex: self.currentIndex)
-    self.recenterIfNeccesary()
   }
 }
