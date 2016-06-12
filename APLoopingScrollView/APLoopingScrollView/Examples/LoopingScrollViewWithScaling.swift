@@ -20,7 +20,7 @@ class LoopingScrollViewWithScaling: APLoopingScrollView {
         // update the frames
         super.updateViews()
         // set the transforms
-        let centerX = self.frameWidth * 0.5
+        let centerX = CGRectGetWidth(self.frame) * 0.5
         for indexPath in self.visibleItems {
             if let view = self.view(forIndexPath: indexPath) {
                 let progX = (view.center.x - self.contentOffset.x - centerX) / centerX

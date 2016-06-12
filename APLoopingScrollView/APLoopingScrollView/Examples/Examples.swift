@@ -33,7 +33,7 @@ class ExampleHorz: UIViewController, APLoopingScrollViewDataSource, APLoopingScr
   }
 
   @IBAction func handleClearData(sender: UIButton) {
-    ++self.cacheCount
+    self.cacheCount += 1
     self.loopingScrollView?.reloadData()
   }
 
@@ -79,7 +79,7 @@ class ExampleVert: UIViewController, APLoopingScrollViewDataSource, APLoopingScr
   }
 
   @IBAction func handleClearData(sender: UIButton) {
-    ++self.cacheCount
+    self.cacheCount += 1
     self.loopingScrollView?.reloadData()
   }
 
@@ -123,7 +123,7 @@ class ExampleCell: UIView {
     set {
       self.label?.text = newValue
       self.label?.sizeToFit()
-      self.label?.center = CGPoint(x: self.frameWidth * 0.5, y: self.frameHeight * 0.5)
+      self.label?.center = CGPoint(x: CGRectGetWidth(self.frame) * 0.5, y: CGRectGetHeight(self.frame) * 0.5)
     }
     get {
       return self.label?.text

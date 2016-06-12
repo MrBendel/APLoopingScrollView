@@ -11,21 +11,20 @@
 		A75971F11BA762A80042D3C4 /* Examples.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75971F01BA762A80042D3C4 /* Examples.swift */; };
 		A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */; };
 		A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A58F61B8C2D810075BCF8 /* ViewController.swift */; };
-		A75A590B1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A590A1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift */; };
 		A75A59171B8C2ECC0075BCF8 /* APLoopingScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59161B8C2ECC0075BCF8 /* APLoopingScrollView.swift */; };
-		A75A59191B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A75A59181B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift */; };
 		A7A346A61BA707D300064306 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A7A346A51BA707D300064306 /* Images.xcassets */; };
 		A7A346D81BA7093900064306 /* Storyboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7A346D71BA7093900064306 /* Storyboard.storyboard */; };
 		A7A346DA1BA7094500064306 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A7A346D91BA7094500064306 /* LaunchScreen.xib */; };
+		FAA364811D0D39D900920559 /* APLoopingScrollViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAA364801D0D39D900920559 /* APLoopingScrollViewTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A75A59051B8C2D820075BCF8 /* PBXContainerItemProxy */ = {
+		FAA364831D0D39D900920559 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A75A58E71B8C2D810075BCF8 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = A75A58EE1B8C2D810075BCF8;
-			remoteInfo = InfinityScrollView;
+			remoteInfo = APLoopingScrollView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -36,14 +35,13 @@
 		A75A58F31B8C2D810075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = APLoopingScrollView/Info.plist; sourceTree = "<group>"; };
 		A75A58F41B8C2D810075BCF8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = APLoopingScrollView/Examples/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
 		A75A58F61B8C2D810075BCF8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewController.swift; path = APLoopingScrollView/Examples/ViewController.swift; sourceTree = SOURCE_ROOT; };
-		A75A59041B8C2D820075BCF8 /* APLoopingScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APLoopingScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A75A59091B8C2D820075BCF8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = APLoopingScrollViewTests/Info.plist; sourceTree = "<group>"; };
-		A75A590A1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfiniteScrollViewTests.swift; path = APLoopingScrollViewTests/InfiniteScrollViewTests.swift; sourceTree = "<group>"; };
 		A75A59161B8C2ECC0075BCF8 /* APLoopingScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APLoopingScrollView.swift; path = APLoopingScrollView/Source/APLoopingScrollView.swift; sourceTree = SOURCE_ROOT; };
-		A75A59181B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APLoopingScrollViewHelpers.swift; path = APLoopingScrollView/Source/APLoopingScrollViewHelpers.swift; sourceTree = SOURCE_ROOT; };
 		A7A346A51BA707D300064306 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = SOURCE_ROOT; };
 		A7A346D71BA7093900064306 /* Storyboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Storyboard.storyboard; sourceTree = SOURCE_ROOT; };
 		A7A346D91BA7094500064306 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = SOURCE_ROOT; };
+		FAA3647E1D0D39D900920559 /* APLoopingScrollViewTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APLoopingScrollViewTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FAA364801D0D39D900920559 /* APLoopingScrollViewTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APLoopingScrollViewTests.swift; sourceTree = "<group>"; };
+		FAA364821D0D39D900920559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,7 +52,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A75A59011B8C2D820075BCF8 /* Frameworks */ = {
+		FAA3647B1D0D39D900920559 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -76,7 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				A75A58F11B8C2D810075BCF8 /* APLoopingScrollView */,
-				A75A59071B8C2D820075BCF8 /* APLoopingScrollViewTests */,
+				FAA3647F1D0D39D900920559 /* APLoopingScrollViewTests */,
 				A75A58F01B8C2D810075BCF8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -85,7 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				A75A58EF1B8C2D810075BCF8 /* APLoopingScrollView.app */,
-				A75A59041B8C2D820075BCF8 /* APLoopingScrollViewTests.xctest */,
+				FAA3647E1D0D39D900920559 /* APLoopingScrollViewTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -110,29 +108,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		A75A59071B8C2D820075BCF8 /* APLoopingScrollViewTests */ = {
-			isa = PBXGroup;
-			children = (
-				A75A590A1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift */,
-				A75A59081B8C2D820075BCF8 /* Supporting Files */,
-			);
-			name = APLoopingScrollViewTests;
-			path = InfinityScrollViewTests;
-			sourceTree = "<group>";
-		};
-		A75A59081B8C2D820075BCF8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				A75A59091B8C2D820075BCF8 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		A75A59141B8C2EB50075BCF8 /* InfiniteScrollView Source */ = {
 			isa = PBXGroup;
 			children = (
 				A75A59161B8C2ECC0075BCF8 /* APLoopingScrollView.swift */,
-				A75A59181B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift */,
 			);
 			name = "InfiniteScrollView Source";
 			sourceTree = "<group>";
@@ -158,6 +137,15 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
+		FAA3647F1D0D39D900920559 /* APLoopingScrollViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				FAA364801D0D39D900920559 /* APLoopingScrollViewTests.swift */,
+				FAA364821D0D39D900920559 /* Info.plist */,
+			);
+			path = APLoopingScrollViewTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -178,22 +166,22 @@
 			productReference = A75A58EF1B8C2D810075BCF8 /* APLoopingScrollView.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A75A59031B8C2D820075BCF8 /* APLoopingScrollViewTests */ = {
+		FAA3647D1D0D39D900920559 /* APLoopingScrollViewTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "APLoopingScrollViewTests" */;
+			buildConfigurationList = FAA364851D0D39D900920559 /* Build configuration list for PBXNativeTarget "APLoopingScrollViewTests" */;
 			buildPhases = (
-				A75A59001B8C2D820075BCF8 /* Sources */,
-				A75A59011B8C2D820075BCF8 /* Frameworks */,
-				A75A59021B8C2D820075BCF8 /* Resources */,
+				FAA3647A1D0D39D900920559 /* Sources */,
+				FAA3647B1D0D39D900920559 /* Frameworks */,
+				FAA3647C1D0D39D900920559 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				A75A59061B8C2D820075BCF8 /* PBXTargetDependency */,
+				FAA364841D0D39D900920559 /* PBXTargetDependency */,
 			);
 			name = APLoopingScrollViewTests;
-			productName = InfinityScrollViewTests;
-			productReference = A75A59041B8C2D820075BCF8 /* APLoopingScrollViewTests.xctest */;
+			productName = APLoopingScrollViewTests;
+			productReference = FAA3647E1D0D39D900920559 /* APLoopingScrollViewTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -203,7 +191,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftMigration = 0710;
-				LastSwiftUpdateCheck = 0710;
+				LastSwiftUpdateCheck = 0730;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = "Andrew Poes";
 				TargetAttributes = {
@@ -211,8 +199,8 @@
 						CreatedOnToolsVersion = 6.4;
 						DevelopmentTeam = 7JZ3Q8HZ8R;
 					};
-					A75A59031B8C2D820075BCF8 = {
-						CreatedOnToolsVersion = 6.4;
+					FAA3647D1D0D39D900920559 = {
+						CreatedOnToolsVersion = 7.3.1;
 						TestTargetID = A75A58EE1B8C2D810075BCF8;
 					};
 				};
@@ -231,7 +219,7 @@
 			projectRoot = "";
 			targets = (
 				A75A58EE1B8C2D810075BCF8 /* APLoopingScrollView */,
-				A75A59031B8C2D820075BCF8 /* APLoopingScrollViewTests */,
+				FAA3647D1D0D39D900920559 /* APLoopingScrollViewTests */,
 			);
 		};
 /* End PBXProject section */
@@ -247,7 +235,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A75A59021B8C2D820075BCF8 /* Resources */ = {
+		FAA3647C1D0D39D900920559 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -263,28 +251,27 @@
 			files = (
 				A75A59171B8C2ECC0075BCF8 /* APLoopingScrollView.swift in Sources */,
 				A75971EF1BA7286E0042D3C4 /* LoopingScrollViewWithScaling.swift in Sources */,
-				A75A59191B8C2EFD0075BCF8 /* APLoopingScrollViewHelpers.swift in Sources */,
 				A75A58F71B8C2D810075BCF8 /* ViewController.swift in Sources */,
 				A75971F11BA762A80042D3C4 /* Examples.swift in Sources */,
 				A75A58F51B8C2D810075BCF8 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A75A59001B8C2D820075BCF8 /* Sources */ = {
+		FAA3647A1D0D39D900920559 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A75A590B1B8C2D820075BCF8 /* InfiniteScrollViewTests.swift in Sources */,
+				FAA364811D0D39D900920559 /* APLoopingScrollViewTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A75A59061B8C2D820075BCF8 /* PBXTargetDependency */ = {
+		FAA364841D0D39D900920559 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = A75A58EE1B8C2D810075BCF8 /* APLoopingScrollView */;
-			targetProxy = A75A59051B8C2D820075BCF8 /* PBXContainerItemProxy */;
+			targetProxy = FAA364831D0D39D900920559 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -397,37 +384,32 @@
 			};
 			name = Release;
 		};
-		A75A59121B8C2D820075BCF8 /* Debug */ = {
+		FAA364861D0D39D900920559 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = InfiniteScrollViewTests/Info.plist;
+				CLANG_ANALYZER_NONNULL = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				INFOPLIST_FILE = APLoopingScrollViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andythedesigner.www.APLoopingScrollViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InfinityScrollView.app/InfinityScrollView";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APLoopingScrollView.app/APLoopingScrollView";
 			};
 			name = Debug;
 		};
-		A75A59131B8C2D820075BCF8 /* Release */ = {
+		FAA364871D0D39D900920559 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = InfiniteScrollViewTests/Info.plist;
+				CLANG_ANALYZER_NONNULL = YES;
+				INFOPLIST_FILE = APLoopingScrollViewTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.andythedesigner.www.APLoopingScrollViewTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/InfinityScrollView.app/InfinityScrollView";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/APLoopingScrollView.app/APLoopingScrollView";
 			};
 			name = Release;
 		};
@@ -452,14 +434,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A75A59111B8C2D820075BCF8 /* Build configuration list for PBXNativeTarget "APLoopingScrollViewTests" */ = {
+		FAA364851D0D39D900920559 /* Build configuration list for PBXNativeTarget "APLoopingScrollViewTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				A75A59121B8C2D820075BCF8 /* Debug */,
-				A75A59131B8C2D820075BCF8 /* Release */,
+				FAA364861D0D39D900920559 /* Debug */,
+				FAA364871D0D39D900920559 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

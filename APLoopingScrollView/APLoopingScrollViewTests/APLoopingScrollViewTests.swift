@@ -1,15 +1,14 @@
 //
-//  InfinityScrollViewTests.swift
-//  InfinityScrollViewTests
+//  APLoopingScrollViewTests.swift
+//  APLoopingScrollViewTests
 //
-//  Created by Andrew Poes on 8/25/15.
-//  Copyright (c) 2015 Andrew Poes. All rights reserved.
+//  Created by apoes on 6/11/16.
+//  Copyright © 2016 Andrew Poes. All rights reserved.
 //
 
-import UIKit
 import XCTest
 
-class InfinityScrollViewTests: XCTestCase {
+class APLoopingScrollViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -23,12 +22,12 @@ class InfinityScrollViewTests: XCTestCase {
     
     func testExample() {
         // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
     func testPerformanceExample() {
         // This is an example of a performance test case.
-        self.measureBlock() {
+        self.measureBlock {
             // Put the code you want to measure the time of here.
         }
     }

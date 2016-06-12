@@ -145,8 +145,9 @@ class APLoopingScrollView: UIScrollView {
     }
   }
 
-  override func touchesShouldCancelInContentView(view: UIView) -> Bool {
-    return true
+  // safe mode function fixes bugs with negative values
+  static func safemod(a: Int, b: Int) -> Int {
+    return ((a % b) + b) % b
   }
 
   convenience init(frame: CGRect, scrollDirection: ScrollDirection) {
@@ -179,10 +180,10 @@ class APLoopingScrollView: UIScrollView {
   func calculatedCenter() -> CGFloat {
     var center: CGFloat = 0
     if self.scrollDirection == .Vertical {
-      center = 0.5 * (self.contentSize.height - self.boundsHeight - self.itemSpacing)
+      center = 0.5 * (self.contentSize.height - CGRectGetHeight(self.bounds) - self.itemSpacing)
     }
     else /*if self.scrollDirection == .Horizontal*/ {
-      center = 0.5 * (self.contentSize.width - self.boundsWidth - self.itemSpacing)
+      center = 0.5 * (self.contentSize.width - CGRectGetWidth(self.bounds) - self.itemSpacing)
     }
     return center
   }
@@ -199,13 +200,13 @@ class APLoopingScrollView: UIScrollView {
       if self.scrollDirection == .Vertical {
         totalItemSpace = itemSize.height + itemSpacing
         contentSize = CGSize(width: self.itemSize.width, height: totalItemSpace * 2)
-        edgeInset = (self.boundsHeight - totalItemSpace) * 0.5
+        edgeInset = (CGRectGetHeight(self.bounds) - totalItemSpace) * 0.5
         contentInset = UIEdgeInsets(top: edgeInset, left: 0, bottom: edgeInset, right: 0)
       }
       else /*if self.scrollDirection == .Horizontal*/ {
         totalItemSpace = itemSize.width + itemSpacing
         contentSize = CGSize(width: totalItemSpace * 2, height: self.itemSize.height)
-        edgeInset = (self.boundsWidth - totalItemSpace) * 0.5
+        edgeInset = (CGRectGetWidth(self.bounds) - totalItemSpace) * 0.5
         contentInset = UIEdgeInsets(top: 0, left: edgeInset, bottom: 0, right: edgeInset)
       }
 
@@ -236,14 +237,14 @@ class APLoopingScrollView: UIScrollView {
     if self.scrollDirection == .Vertical {
       currentOffset = self.contentOffset.y
       contentSize = self.contentSize.height
-      centerOffset = (contentSize - self.boundsHeight) * 0.5
+      centerOffset = (contentSize - CGRectGetHeight(self.bounds)) * 0.5
       distanceFromCenter = fabs(currentOffset - centerOffset)
       totalItemSpace = self.itemSize.height + self.itemSpacing
     }
     else /*if self.scrollDirection == .Horizontal*/ {
       currentOffset = self.contentOffset.x
       contentSize = self.contentSize.width
-      centerOffset = (contentSize - self.boundsWidth) * 0.5
+      centerOffset = (contentSize - CGRectGetWidth(self.bounds)) * 0.5
       distanceFromCenter = fabs(currentOffset - centerOffset)
       totalItemSpace = self.itemSize.width + self.itemSpacing
     }
@@ -261,7 +262,7 @@ class APLoopingScrollView: UIScrollView {
       let center = self.calculatedCenter()
       let indexOffset = currentOffset > center ? 1 : -1
       let newIndex = self.currentIndex + indexOffset
-      self.currentIndex = safemod(newIndex, b: self.totalItems())
+      self.currentIndex = APLoopingScrollView.safemod(newIndex, b: self.totalItems())
 
       let newOffset = indexOffset > 0 ? minOffset : maxOffset
       if self.scrollDirection == .Vertical {
@@ -321,11 +322,11 @@ class APLoopingScrollView: UIScrollView {
 
     if self.scrollDirection == .Vertical {
       totalItemSpace = self.itemSize.height + self.itemSpacing
-      visibleRect = CGRect(x: 0, y: self.contentOffset.y, width: self.boundsWidth, height: totalItemSpace + self.contentInset.top + self.contentInset.bottom)
+      visibleRect = CGRect(x: 0, y: self.contentOffset.y, width: CGRectGetWidth(self.bounds), height: totalItemSpace + self.contentInset.top + self.contentInset.bottom)
     }
     else /*if self.scrollDirection == .Horizontal*/ {
       totalItemSpace = self.itemSize.width + self.itemSpacing
-      visibleRect = CGRect(x: self.contentOffset.x, y: 0, width: totalItemSpace + self.contentInset.left + self.contentInset.right, height: self.boundsHeight)
+      visibleRect = CGRect(x: self.contentOffset.x, y: 0, width: totalItemSpace + self.contentInset.left + self.contentInset.right, height: CGRectGetHeight(self.bounds))
     }
 
     let totalItems = self.totalItems()
@@ -336,7 +337,7 @@ class APLoopingScrollView: UIScrollView {
       // go left
       let frame = self.frameForView(-index)
       if CGRectIntersectsRect(frame, visibleRect) {
-        let item = safemod(self.currentIndex - index, b: totalItems)
+        let item = APLoopingScrollView.safemod(self.currentIndex - index, b: totalItems)
         let indexPath = IndexPath(item: item, offset: -index)
         visibleItems.append(indexPath)
       }
@@ -344,7 +345,7 @@ class APLoopingScrollView: UIScrollView {
       if index > 0 {
         let frame = self.frameForView(index)
         if CGRectIntersectsRect(frame, visibleRect) {
-          let item = safemod(self.currentIndex + index, b: totalItems)
+          let item = APLoopingScrollView.safemod(self.currentIndex + index, b: totalItems)
           let indexPath = IndexPath(item: item, offset: index)
           visibleItems.append(indexPath)
         }
@@ -371,15 +372,15 @@ class APLoopingScrollView: UIScrollView {
     }
 
     let offset = screenCenter + CGFloat(distToCenterIndex) * totalItemSpace
-    let frame: CGRect
+    let origin: CGPoint
 
     if self.scrollDirection == .Vertical {
-      frame = CGRect(x: (self.frameWidth - self.itemSize.width) * 0.5, y: offset, width: self.itemSize.width, height: self.itemSize.height)
+      origin = CGPoint(x: (CGRectGetWidth(self.frame) - self.itemSize.width) * 0.5, y: offset)
     }
     else /*if self.scrollDirection == .Horizontal*/ {
-      frame = CGRect(x: offset, y: (self.frameHeight - self.itemSize.height) * 0.5, width: self.itemSize.width, height: self.itemSize.height)
+      origin = CGPoint(x: offset, y: (CGRectGetHeight(self.frame) - self.itemSize.height) * 0.5)
     }
-    return frame
+    return CGRect(origin: origin, size: self.itemSize)
   }
 
   func hasChanges(a: [IndexPath], _ b: [IndexPath]) -> Bool {
@@ -422,7 +423,7 @@ class APLoopingScrollView: UIScrollView {
 
   func view(forIndexPath indexPath: IndexPath) -> UIView? {
     let key = indexPath.description()
-    if self.cachedViews.has(key) {
+    if self.cachedViews.indexForKey(key) != nil {
       return self.cachedViews[key]
     }
     else {
@@ -456,13 +457,13 @@ class APLoopingScrollView: UIScrollView {
 
         if self.scrollDirection == .Vertical {
           activeVelocity = panVelocity.y
-          boundsSize = self.boundsHeight
+          boundsSize = CGRectGetHeight(self.bounds)
           totalItemSpace = self.itemSize.height + self.itemSpacing
           target = 0.5 * (-boundsSize + totalItemSpace + self.itemSize.height)
         }
         else /*if self.scrollDirection == .Horizontal*/ {
           activeVelocity = panVelocity.x
-          boundsSize = self.boundsWidth
+          boundsSize = CGRectGetWidth(self.bounds)
           totalItemSpace = self.itemSize.width + self.itemSpacing
           target = 0.5 * (-boundsSize + totalItemSpace + self.itemSize.width)
         }
