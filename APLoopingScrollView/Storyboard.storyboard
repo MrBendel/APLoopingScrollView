@@ -190,7 +190,7 @@
                                     <constraint firstAttribute="width" secondItem="Loh-1g-oRn" secondAttribute="height" multiplier="13:4" id="axS-wd-c2Z"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="20"/>
-                                <state key="normal" title="Clear Data">
+                                <state key="normal" title="Reload Data">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
