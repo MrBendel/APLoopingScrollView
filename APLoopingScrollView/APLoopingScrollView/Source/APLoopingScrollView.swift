@@ -44,12 +44,13 @@ class APLoopingScrollView: UIScrollView {
     case Vertical
   }
 
+  /// Used to calculate the frame position for element.
   enum ItemAlignment {
     case PinLeft          // Pin element to the left edge.
     case PinRight         // Pin element to the right edge.
-    case Centered         // Center element on page
-    case CenteredLeft     // Center element within group to left
-    case CenteredPair     // Center group of elements
+    case Centered         // Center element on page.
+    case CenteredLeft     // Center element within group to left.
+    case CenteredPair     // Center group of elements.
   }
 
   weak var dataSource: APLoopingScrollViewDataSource?
@@ -81,7 +82,12 @@ class APLoopingScrollView: UIScrollView {
       self.setNeedsLayout()
     }
   }
-  var itemAlignment: ItemAlignment = .Centered
+  var itemAlignment: ItemAlignment = .Centered {
+    didSet {
+      self.setNeedsUpdateLayoutInfo()
+      self.setNeedsLayout()
+    }
+  }
   var currentIndex: Int = 0
   var visibleItems = [IndexPath]()
   var cachedViews = [String: UIView]()
