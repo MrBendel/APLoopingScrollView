@@ -322,17 +322,20 @@ class APLoopingScrollView: UIScrollView {
 
     let totalItemSpace: CGFloat
     let visibleRect: CGRect
+    let contentArea: CGFloat
 
     if self.scrollDirection == .Vertical {
       totalItemSpace = self.itemSize.height + self.itemSpacing
       visibleRect = CGRect(x: 0, y: self.contentOffset.y, width: CGRectGetWidth(self.bounds), height: totalItemSpace + self.contentInset.top + self.contentInset.bottom)
+      contentArea = CGRectGetHeight(self.bounds)
     } else /*if self.scrollDirection == .Horizontal*/ {
       totalItemSpace = self.itemSize.width + self.itemSpacing
       visibleRect = CGRect(x: self.contentOffset.x, y: 0, width: totalItemSpace + self.contentInset.left + self.contentInset.right, height: CGRectGetHeight(self.bounds))
+      contentArea = CGRectGetWidth(self.bounds)
     }
 
     let totalItems = self.totalItems()
-    let minItems = Int(ceil(self.contentSize.width / totalItemSpace))
+    let minItems = Int(ceil(contentArea / totalItemSpace))
     let searchLength = max(totalItems, minItems)
     // go left
     for index in 0 ..< searchLength {
